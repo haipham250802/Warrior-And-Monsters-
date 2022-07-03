@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Ground
+  - LimitEnemy
   layers:
   - Default
   - TransparentFX
@@ -12,8 +14,8 @@ TagManager:
   - Water
   - UI
   - Ground
-  - 
-  - 
+  - Player
+  - Enemy
   - 
   - 
   - 
@@ -58,4 +60,19 @@ TagManager:
     locked: 0
   - name: Water
     uniqueID: 247225563
+    locked: 0
+  - name: New Layer 7
+    uniqueID: 1227057489
+    locked: 0
+  - name: New Layer 8
+    uniqueID: 1784091829
+    locked: 0
+  - name: New Layer 9
+    uniqueID: 1267040609
+    locked: 0
+  - name: New Layer 10
+    uniqueID: 3475150167
+    locked: 0
+  - name: UI
+    uniqueID: 1553785863
     locked: 0
