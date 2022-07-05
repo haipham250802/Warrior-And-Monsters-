@@ -4,18 +4,26 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
+    [Header("Class")]
     public Transform player;
     public GameObject LimitEnemy;
     public GameObject hitBox;
     Animator anm;
 
+    [Header("Struct")]
     public Vector3 EnemyOriginPos;
     public LayerMask PlayerLayerMask;
 
+    [Header("Parameters")]
     public float Speed;
     public float range;
-    bool isFacingRight;
-    bool isAttack;
+    public float TakeDamage;
+
+    private bool isFacingRight;
+    private bool isAttack;
+
+    public Animator Anm { get => anm; set => anm = value; }
+    public bool IsAttack { get => isAttack; set => isAttack = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -47,7 +55,6 @@ public class Enemy : MonoBehaviour
         if (col != null)
         {
             anm.SetBool("isRunEnemy", true);
-            Debug.Log("da phat hien");
             if (player.position.x < transform.position.x && isFacingRight)
             {
                 Flip();
@@ -58,17 +65,8 @@ public class Enemy : MonoBehaviour
                 Flip();
                 isFacingRight = true;
             }
-            transform.position = Vector3.MoveTowards(transform.position, player.position + thePosition, Speed * 0.05f * Time.deltaTime);
-            if (isAttack)
-            {
-                anm.SetBool("isAttackEnemy", true);
-                isAttack = false;
-               
-            }
-            else if (!isAttack)
-            {
-                anm.SetBool("isAttackEnemy", false);
-            }
+            transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.position.x, 0.8f, player.position.z), Speed * 0.05f * Time.deltaTime);
+
         }
         else
         {
@@ -84,7 +82,6 @@ public class Enemy : MonoBehaviour
                 Flip();
             }
 
-            Debug.Log("da thoat");
             transform.position = Vector3.MoveTowards(transform.position, EnemyOriginPos, Speed * 0.1f * Time.deltaTime);
             if (transform.position.x == EnemyOriginPos.x)
             {
@@ -92,22 +89,14 @@ public class Enemy : MonoBehaviour
             }
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            isAttack = true;
-        }
-
-    }
     private void OnTriggerStay2D(Collider2D collision)
     {
         if (collision.CompareTag("Player"))
         {
             isAttack = true;
         }
-
     }
+
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

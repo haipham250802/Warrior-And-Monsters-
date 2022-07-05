@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d842b3be390328e4e82653602cda1bf2
+guid: e39c373de5b718f4d937bb0117d51ba2
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -45,14 +45,14 @@ TextureImporter:
   spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
-  alignment: 0
-  spritePivot: {x: 0.5, y: 0.5}
+  alignment: 9
+  spritePivot: {x: 0.7581138, y: 0.37617135}
   spritePixelsToUnits: 100
-  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteBorder: {x: 341, y: 61, z: 0, w: 156}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: -1
+  spriteTessellationDetail: 0
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -140,13 +140,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: clown_export-buff_2_26_0
+      name: clown_export-shield_attack_14-removebg-preview_0
       rect:
         serializedVersion: 2
-        x: 12
-        y: 36
-        width: 357
-        height: 554
+        x: 392
+        y: 89
+        width: 188
+        height: 117
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,46 +154,28 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5f728b7230ee5234ea79c950293adc43
-      internalID: -1281910266
+      spriteID: 4560ec3b083d8594faf58051a5f8a2b8
+      internalID: 1855425861
       vertices: []
       indices: 
       edges: []
       weights: []
-    - serializedVersion: 2
-      name: clown_export-buff_2_26_1
-      rect:
-        serializedVersion: 2
-        x: 18
-        y: 35
-        width: 10
-        height: 97
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5fd2f142cff74fb4dae15803c45de598
-      internalID: 1302438136
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    outline: []
+    outline:
+    - - {x: 35.5, y: -141}
+      - {x: 35.5, y: 43}
+      - {x: 282.5, y: 43}
+      - {x: 282.5, y: -141}
     physicsShape: []
     bones: []
     spriteID: 5e97eb03825dee720800000000000000
-    internalID: 0
+    internalID: 1537655665
     vertices: []
     indices: 
     edges: []
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      clown_export-buff_2_26_0: -1281910266
-      clown_export-buff_2_26_1: 1302438136
+      clown_export-shield_attack_14-removebg-preview_0: 1855425861
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: d842b3be390328e4e82653602cda1bf2
+guid: 2f4bbd63ec25beb4badecdcd9ac51020
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -140,13 +140,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: clown_export-buff_2_26_0
+      name: image-removebg-preview (15)_0
       rect:
         serializedVersion: 2
-        x: 12
-        y: 36
-        width: 357
-        height: 554
+        x: 23
+        y: 52
+        width: 290
+        height: 266
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,29 +154,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5f728b7230ee5234ea79c950293adc43
-      internalID: -1281910266
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: clown_export-buff_2_26_1
-      rect:
-        serializedVersion: 2
-        x: 18
-        y: 35
-        width: 10
-        height: 97
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 5fd2f142cff74fb4dae15803c45de598
-      internalID: 1302438136
+      spriteID: 15501f83b3697764f8a77a13e663c233
+      internalID: -1540487805
       vertices: []
       indices: 
       edges: []
@@ -192,8 +171,7 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      clown_export-buff_2_26_0: -1281910266
-      clown_export-buff_2_26_1: 1302438136
+      image-removebg-preview (15)_0: -1540487805
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
