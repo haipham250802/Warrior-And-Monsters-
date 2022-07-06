@@ -6,9 +6,8 @@ public class Enemy : MonoBehaviour
 {
     [Header("Class")]
     public Transform player;
-    public GameObject LimitEnemy;
-    public GameObject hitBox;
     Animator anm;
+    Player m_player;
 
     [Header("Struct")]
     public Vector3 EnemyOriginPos;
@@ -29,6 +28,7 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         anm = GetComponent<Animator>();
+        m_player = FindObjectOfType<Player>();
         isFacingRight = true;
     }
 
@@ -50,56 +50,80 @@ public class Enemy : MonoBehaviour
     }
     void MoveAttack()
     {
-        Vector3 thePosition = new Vector3(0.3f, 0.01f, 0);
+        Vector3 thePosition;
         Collider2D col = Physics2D.OverlapCircle(transform.position, range, PlayerLayerMask);
-        if (col != null)
+        if (!m_player.IsGameOver)
         {
-            anm.SetBool("isRunEnemy", true);
-            if (player.position.x < transform.position.x && isFacingRight)
+            if (col != null)
             {
-                Flip();
-                isFacingRight = false;
+                anm.SetBool("isRunEnemy", true);
+                if (player.position.x < transform.position.x && isFacingRight)
+                {
+                    Flip();
+                    isFacingRight = false;
+                }
+                else if (player.position.x > transform.position.x && !isFacingRight)
+                {
+                    Flip();
+                    isFacingRight = true;
+                }
+                if (!m_player.IsFacingRight)
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.position.x - 0.3f, transform.position.y, player.position.z), Speed * 0.05f * Time.deltaTime);
+                }
+                if (player.position.x > transform.position.x)
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.position.x - 0.3f, transform.position.y, player.position.z), Speed * 0.05f * Time.deltaTime);
+                }
+                else if (player.position.x < transform.position.x)
+                {
+                    transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.position.x + 0.3f, transform.position.y, player.position.z), Speed * 0.05f * Time.deltaTime);
+                }
             }
-            else if (player.position.x > transform.position.x && !isFacingRight)
+            else
             {
-                Flip();
-                isFacingRight = true;
-            }
-            transform.position = Vector3.MoveTowards(transform.position, new Vector3(player.position.x, 0.8f, player.position.z), Speed * 0.05f * Time.deltaTime);
+                anm.SetBool("isRunEnemy", true);
+                anm.SetBool("isAttackEnemy", false);
 
+                if (transform.position.x < EnemyOriginPos.x && !isFacingRight)
+                {
+                    Flip();
+                }
+                else if (transform.position.x > EnemyOriginPos.x && isFacingRight)
+                {
+                    Flip();
+                }
+
+                transform.position = Vector3.MoveTowards(transform.position, EnemyOriginPos, Speed * 0.1f * Time.deltaTime);
+                if (transform.position.x == EnemyOriginPos.x)
+                {
+                    anm.SetBool("isRunEnemy", false);
+                }
+            }
+
+            Collider2D col2 = Physics2D.OverlapCircle(transform.position, range / 3, PlayerLayerMask);
+            if (col2 != null)
+            {
+                IsAttack = true;
+            }
+            else if (col2 == null)
+            {
+                isAttack = false;
+            }
         }
         else
         {
-            anm.SetBool("isRunEnemy", true);
+            anm.SetBool("isRunEnemy", false);
             anm.SetBool("isAttackEnemy", false);
-
-            if (transform.position.x < EnemyOriginPos.x && !isFacingRight)
-            {
-                Flip();
-            }
-            else if (transform.position.x > EnemyOriginPos.x && isFacingRight)
-            {
-                Flip();
-            }
-
-            transform.position = Vector3.MoveTowards(transform.position, EnemyOriginPos, Speed * 0.1f * Time.deltaTime);
-            if (transform.position.x == EnemyOriginPos.x)
-            {
-                anm.SetBool("isRunEnemy", false);
-            }
         }
     }
-    private void OnTriggerStay2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Player"))
-        {
-            isAttack = true;
-        }
-    }
+    
+
 
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
+        Gizmos.DrawWireSphere(transform.position, range / 3);
     }
 }

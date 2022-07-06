@@ -42,6 +42,7 @@ public class Player : MonoBehaviour
     public bool IsCanUseSkill01 { get => isCanUseSkill01; set => isCanUseSkill01 = value; }
     public bool IsCanUseSkill02 { get => isCanUseSkill02; set => isCanUseSkill02 = value; }
     public bool IsCanUseSkill03 { get => isCanUseSkill03; set => isCanUseSkill03 = value; }
+    public bool IsFacingRight { get => isFacingRight; set => isFacingRight = value; }
 
     void Start()
     {
@@ -72,6 +73,9 @@ public class Player : MonoBehaviour
         if (m_Info.getHP() <= 0)
         {
             isGameOver = true;
+            anm.SetBool("isDead", true);
+            Speed = 0;
+            anm.SetFloat("isRun", -1);
         }
     }
     private void FixedUpdate()

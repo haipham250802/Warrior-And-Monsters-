@@ -6,6 +6,7 @@ public class HitBox_Enemy : MonoBehaviour
 {
     private Enemy m_Enemy;
     private Info_Bar m_Info;
+    private Player m_player;
 
     [Header("Parametes")]
     public float damage;
@@ -15,6 +16,7 @@ public class HitBox_Enemy : MonoBehaviour
     {
         m_Enemy = FindObjectOfType<Enemy>();
         m_Info = FindObjectOfType<Info_Bar>();
+        m_player = FindObjectOfType<Player>();
     }
     private void Update()
     {
@@ -22,22 +24,38 @@ public class HitBox_Enemy : MonoBehaviour
     }
     void attack()
     {
-        if (m_Enemy.IsAttack)
+        if (!m_player.IsGameOver)
         {
-            m_Enemy.Anm.SetBool("isAttackEnemy", true);
-            m_Enemy.IsAttack = false;
+            if (m_Enemy.IsAttack)
+            {
+                m_Enemy.Anm.SetBool("isAttackEnemy", true);
+            }
+            else if (!m_Enemy.IsAttack)
+            {
+                m_Enemy.Anm.SetBool("isAttackEnemy", false);
+            }
         }
-        else if (!m_Enemy.IsAttack)
+        else
         {
             m_Enemy.Anm.SetBool("isAttackEnemy", false);
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!m_player.IsGameOver)
+        {
+            if (collision.CompareTag("Player"))
+            {
+                m_Info.UpdateHp(damage);
+                m_player.Getanm().SetBool("isHitDamage", true);
+            }
+        }
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
         if (collision.CompareTag("Player"))
         {
-            Debug.LogWarning("Da cham");
-            m_Info.UpdateHp(damage);
+            m_player.Getanm().SetBool("isHitDamage", false);
         }
     }
     public float getDamage()
