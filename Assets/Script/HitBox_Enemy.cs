@@ -48,6 +48,8 @@ public class HitBox_Enemy : MonoBehaviour
             {
                 m_Info.UpdateHp(damage);
                 m_player.Getanm().SetBool("isHitDamage", true);
+                m_player.Getanm().SetBool("isHitDamage", false);
+
             }
         }
     }

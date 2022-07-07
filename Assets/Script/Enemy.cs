@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour
     public Transform player;
     Animator anm;
     Player m_player;
+    HealthBar_Enemy m_health;
 
     [Header("Struct")]
     public Vector3 EnemyOriginPos;
@@ -29,6 +30,7 @@ public class Enemy : MonoBehaviour
     {
         anm = GetComponent<Animator>();
         m_player = FindObjectOfType<Player>();
+        m_health = FindObjectOfType<HealthBar_Enemy>();
         isFacingRight = true;
     }
 
@@ -36,10 +38,21 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         MoveAttack();
+        dead();
     }
     private void FixedUpdate()
     {
 
+    }
+    void dead()
+    {
+        if(m_health.CurrentHealth <= 0)
+        {
+            anm.SetBool("isRunEnemy", false);
+            anm.SetBool("isAttackEnemy", false);
+            anm.SetBool("isDead",true);
+            Destroy(gameObject, 1);
+        }
     }
     void Flip()
     {
@@ -50,7 +63,6 @@ public class Enemy : MonoBehaviour
     }
     void MoveAttack()
     {
-        Vector3 thePosition;
         Collider2D col = Physics2D.OverlapCircle(transform.position, range, PlayerLayerMask);
         if (!m_player.IsGameOver)
         {
@@ -118,8 +130,6 @@ public class Enemy : MonoBehaviour
         }
     }
     
-
-
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.red;

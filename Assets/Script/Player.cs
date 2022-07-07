@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private Info_Bar m_Info;
     private TimeCountDownSkill m_TimeCountDown;
+    
 
     [Header("Animator")]
     public Animator anm;
@@ -16,6 +17,12 @@ public class Player : MonoBehaviour
     [Header("Parameters")]
     public float Speed;
     public float JumpForce;
+    [SerializeField]
+    private float damage1;
+    [SerializeField]
+    private float damage2;
+    [Header("Object")]
+    public GameObject SKills;
     
     private int ClickCount00 = 0;
     private int ClickCount01 = 0;
@@ -32,6 +39,8 @@ public class Player : MonoBehaviour
     private bool IsCanDoubleJump;
     private bool isGameOver;
 
+  
+
 
     public bool IsGameOver { get => isGameOver; private set => isGameOver = value; }
     public int ClickCount001 { get => ClickCount00; set => ClickCount00 = value; }
@@ -43,6 +52,9 @@ public class Player : MonoBehaviour
     public bool IsCanUseSkill02 { get => isCanUseSkill02; set => isCanUseSkill02 = value; }
     public bool IsCanUseSkill03 { get => isCanUseSkill03; set => isCanUseSkill03 = value; }
     public bool IsFacingRight { get => isFacingRight; set => isFacingRight = value; }
+    public float Damage1 { get => damage1; set => damage1 = value; }
+    public float Damage2 { get => damage2; set => damage2 = value; }
+
 
     void Start()
     {
@@ -70,13 +82,20 @@ public class Player : MonoBehaviour
     void GameOver()
     {
 
-        if (m_Info.getHP() <= 0)
+        if (m_Info.CurHP <= 0)
         {
             isGameOver = true;
+            StopAni();
             anm.SetBool("isDead", true);
-            Speed = 0;
-            anm.SetFloat("isRun", -1);
         }
+    }
+    void StopAni()
+    {
+        Speed = 0;
+        JumpForce = 0;
+        anm.SetFloat("isRun", -1);
+        SKills.SetActive(false);
+        anm.SetBool("isJump", false);
     }
     private void FixedUpdate()
     {
@@ -183,5 +202,4 @@ public class Player : MonoBehaviour
     {
         return anm;
     }
-    
 }
