@@ -17,7 +17,6 @@ public class Enemy : MonoBehaviour
     [Header("Parameters")]
     public float Speed;
     public float range;
-    public float TakeDamage;
 
     private bool isFacingRight;
     private bool isAttack;

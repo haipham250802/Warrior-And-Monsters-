@@ -6,12 +6,10 @@ public class HitBox_Player : MonoBehaviour
 {
     HealthBar_Enemy m_health;
     Player m_Player;
-    TimeCountDownSkill m_time;
     private void Start()
     {
         m_health = FindObjectOfType<HealthBar_Enemy>();
         m_Player = FindObjectOfType<Player>();
-        m_time = FindObjectOfType<TimeCountDownSkill>();
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {

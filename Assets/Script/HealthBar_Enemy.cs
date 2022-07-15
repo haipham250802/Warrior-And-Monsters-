@@ -17,6 +17,7 @@ public class HealthBar_Enemy : MonoBehaviour
     {
         currentHealth = MaxHealth;
         slider.maxValue = MaxHealth;
+        slider.value = MaxHealth;
     }
 
     // Start is called before the first frame update
@@ -34,5 +35,9 @@ public class HealthBar_Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            setHealth(10);
+        }
     }
 }

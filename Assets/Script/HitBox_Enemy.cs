@@ -10,7 +10,7 @@ public class HitBox_Enemy : MonoBehaviour
 
     [Header("Parametes")]
     public float damage;
-    private bool isAttack;
+
 
     private void Start()
     {
@@ -48,7 +48,6 @@ public class HitBox_Enemy : MonoBehaviour
             {
                 m_Info.UpdateHp(damage);
                 m_player.Getanm().SetBool("isHitDamage", true);
-                m_player.Getanm().SetBool("isHitDamage", false);
 
             }
         }

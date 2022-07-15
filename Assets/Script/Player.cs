@@ -18,6 +18,10 @@ public class Player : MonoBehaviour
     public float Speed;
     public float JumpForce;
     [SerializeField]
+    private float maxHealth;
+    [SerializeField]
+    private float maxMP;
+    [SerializeField]
     private float damage1;
     [SerializeField]
     private float damage2;
@@ -54,7 +58,8 @@ public class Player : MonoBehaviour
     public bool IsFacingRight { get => isFacingRight; set => isFacingRight = value; }
     public float Damage1 { get => damage1; set => damage1 = value; }
     public float Damage2 { get => damage2; set => damage2 = value; }
-
+    public float MaxHealth { get => maxHealth; set => maxHealth = value; }
+    public float MaxMP { get => maxMP; set => maxMP = value; }
 
     void Start()
     {

@@ -11,25 +11,25 @@ public class Info_Bar : MonoBehaviour
     // Start is called before the first frame update
 
     [Header("Parameters")]
-    public float maxHp;
-    public float maxMP;
+    private float maxHp;
+    private float maxMP;
     public float maxXp;
 
     float curHP;
-    
-    private HitBox_Enemy m_HitBox;
-
     public float CurHP { get => curHP; set => curHP = value; }
+    Player m_player;
 
     void Start()
     {
-        m_HitBox = FindObjectOfType<HitBox_Enemy>();
+        m_player = FindObjectOfType<Player>();
 
+        maxHp = m_player.MaxHealth;
+        maxMP = m_player.MaxMP;
+        curHP = maxHp;
         FillHP.maxValue = maxHp;
         FillMP.maxValue = maxMP;
         FillXP.maxValue = maxXp;
 
-        curHP = maxHp;
     }
 
     public void UpdateHp(float TakeDamage)
