@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class TimeCountDownSkill : MonoBehaviour
 {
     private Player m_Player;
-    private HealthBar_Enemy m_HealthEnemy;
     private Info_Bar m_InfoBar;
 
     [Header("Buttons")]
@@ -32,7 +31,6 @@ public class TimeCountDownSkill : MonoBehaviour
     void Start()
     {
         m_Player = FindObjectOfType<Player>();
-        m_HealthEnemy = FindObjectOfType<HealthBar_Enemy>();
         m_InfoBar = FindObjectOfType<Info_Bar>();
     }
 
