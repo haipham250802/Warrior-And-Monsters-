@@ -171,37 +171,53 @@ public class Player : MonoBehaviour
     public void Sword_Attack()
     {
         ClickCount00++;
-        if (ClickCount00 == 1)
+        if (ClickCount00 == 1 && m_Info.CurMP >= 2)
         {
             isCanUseSkill00 = true;
             m_Info.TakeMP(2);
+        }
+        if(m_Info.CurMP < 2)
+        {
+            ClickCount00 = 0;
         }
     }
     public void Shield_Attack()
     {
         ClickCount01++;
-        if (ClickCount01 == 1)
+        if (ClickCount01 == 1 && m_Info.CurMP >= 10)
         {
             isCanUseSkill01 = true;
             m_Info.TakeMP(10);
+        }
+        if(m_Info.CurMP < 10)
+        {
+            ClickCount01 = 0;
         }
     }
     public void Buff_Damage()
     {
         ClickCount02++;
-        if (ClickCount02 == 1)
+        if (ClickCount02 == 1 && m_Info.CurMP >= 15)
         {
             isCanUseSkill02 = true;
             m_Info.TakeMP(15);
+        }
+        if(m_Info.CurMP < 15)
+        {
+            ClickCount02 = 0;
         }
     }
     public void Buff_Hp()
     {
         ClickCount03++;
-        if (ClickCount03 == 1)
+        if (ClickCount03 == 1 && m_Info.CurMP >= 20)
         {
             isCanUseSkill03 = true;
             m_Info.TakeMP(20);
+        }
+        if(m_Info.CurMP < 20)
+        {
+            ClickCount03 = 0;
         }
     }
     public void JumpBtn()

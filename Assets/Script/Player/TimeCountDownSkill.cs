@@ -36,20 +36,12 @@ public class TimeCountDownSkill : MonoBehaviour
 
     public void SwordAttack()
     {
-        if (m_Player.IsCanUseSkill00 && !isUsedSkill00 && m_InfoBar.CurMP > 2)
+        if (m_Player.IsCanUseSkill00 && !isUsedSkill00 )
         {
             m_Player.Getanm().SetTrigger("isSwordAttack");
             isUsedSkill00 = true;
         }
-        if (m_InfoBar.CurMP < 2)
-        {
-            SwordAttack_Btn.GetComponent<Image>().color = Color.gray;
-            ColorBlock cb0 = SwordAttack_Btn.colors;
-            cb0.pressedColor = Color.white;
-            SwordAttack_Btn.colors = cb0;
-            isUsedSkill00 = false;
-
-        }
+      
         if (isUsedSkill00)
         {
             SwordAttack_Btn.GetComponent<Image>().color = Color.gray;
@@ -73,19 +65,12 @@ public class TimeCountDownSkill : MonoBehaviour
     }
     public void ShieldAttack()
     {
-        if (m_Player.IsCanUseSkill01 && !isUsedSkill01 && m_InfoBar.CurMP > 10)
+        if (m_Player.IsCanUseSkill01 && !isUsedSkill01 )
         {
             m_Player.Getanm().SetTrigger("isShieldAttack");
             isUsedSkill01 = true;
         }
-        if (m_InfoBar.CurMP < 10)
-        {
-            Shield_Btn.GetComponent<Image>().color = Color.gray;
-            ColorBlock cb0 = Shield_Btn.colors;
-            cb0.pressedColor = Color.white;
-            Shield_Btn.colors = cb0;
-            isUsedSkill01 = false;
-        }
+      
         if (isUsedSkill01)
         {
             Shield_Btn.GetComponent<Image>().color = Color.gray;
@@ -109,19 +94,12 @@ public class TimeCountDownSkill : MonoBehaviour
     }
     public void Buff01()
     {
-        if (m_Player.IsCanUseSkill02 && !isUsedSkill02 && m_InfoBar.CurMP > 15)
+        if (m_Player.IsCanUseSkill02 && !isUsedSkill02)
         {
             m_Player.Getanm().SetTrigger("isBuffDamage");
             isUsedSkill02 = true;
         }
-        if(m_InfoBar.CurMP < 15)
-        {
-            Buff01_Btn.GetComponent<Image>().color = Color.gray;
-            ColorBlock cb0 = Shield_Btn.colors;
-            cb0.pressedColor = Color.white;
-            Buff01_Btn.colors = cb0;
-            isUsedSkill02 = false;
-        }
+       
         if (isUsedSkill02)
         {
             Buff01_Btn.GetComponent<Image>().color = Color.gray;
@@ -155,7 +133,7 @@ public class TimeCountDownSkill : MonoBehaviour
     public void Buff02()
     {
         int dem = 0;
-        if (m_Player.IsCanUseSkill03 && !isUsedSkill03 && m_InfoBar.CurMP > 20)
+        if (m_Player.IsCanUseSkill03 && !isUsedSkill03)
         {
             m_Player.Getanm().SetTrigger("isBuffHp");
             dem++;
@@ -176,14 +154,7 @@ public class TimeCountDownSkill : MonoBehaviour
             }
             isUsedSkill03 = true;
         }
-        if(m_InfoBar.CurMP < 20)
-        {
-            Buff02_Btn.GetComponent<Image>().color = Color.gray;
-            ColorBlock cb0 = Shield_Btn.colors;
-            cb0.pressedColor = Color.white;
-            Buff02_Btn.colors = cb0;
-            isUsedSkill03 = false;
-        }
+      
         if (isUsedSkill03)
         {
             Buff02_Btn.GetComponent<Image>().color = Color.gray;
