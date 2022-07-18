@@ -8,20 +8,32 @@ public class EnemyBehavior : MonoBehaviour
     public float maxHitPoint;
     public float range;
     public float speed;
+    public float limit;
+    public string nameRunning;
+    public string nameAttack;
+  
     public Vector3 PosOriginal;
+    public Vector3 offset;
     public HeathBarEnemy health;
     public Transform Target;
     public LayerMask playerMask;
+    public GameObject FloatingPoint;
+   
+   
     private Animator anim;
     private bool IsFacingRight;
+    private Player m_player;
+    public GameObject[] Items;
     // Start is called before the first frame update
     void Start()
     {
         hitPoint = maxHitPoint;
         health.SetHealth(hitPoint, maxHitPoint);
         anim = GetComponent<Animator>();
+        m_player = FindObjectOfType<Player>();
 
         IsFacingRight = true;
+
     }
     private void Update()
     {
@@ -30,53 +42,63 @@ public class EnemyBehavior : MonoBehaviour
     public void TakeHit(float damage)
     {
         hitPoint -= damage;
-
         if (hitPoint <= 0)
         {
+            int rand = Random.Range(0,Items.Length);
+            Instantiate(Items[rand],transform.position + offset, Quaternion.identity);
             Destroy(gameObject);
         }
         health.SetHealth(hitPoint, maxHitPoint);
+        Instantiate(FloatingPoint, transform.position + offset, Quaternion.identity);
     }
     void FollowPlayer()
     {
-        Collider2D col = Physics2D.OverlapCircle(transform.position, range, playerMask);
-        if (col)
+        if (!m_player.IsGameOver )
         {
-            anim.SetBool("isRunning", true);
-            if (Target.position.x < transform.position.x && IsFacingRight)
+            Collider2D col = Physics2D.OverlapCircle(transform.position, range, playerMask);
+            if (col)
             {
-                Flip();
+                anim.SetBool(nameRunning, true);
+                if (Target.position.x < transform.position.x && IsFacingRight)
+                {
+                    Flip();
+                }
+                if (Target.position.x > transform.position.x && !IsFacingRight)
+                {
+                    Flip();
+                }
+                transform.position = Vector2.MoveTowards(transform.position, new Vector2(Target.position.x + 0.4f, transform.position.y), speed * Time.deltaTime);
             }
-            if (Target.position.x > transform.position.x && !IsFacingRight)
+            else if (col == null)
             {
-                Flip();
+                if (transform.position.x < PosOriginal.x && !IsFacingRight)
+                {
+                    Flip();
+                }
+                if (transform.position.x > PosOriginal.x && IsFacingRight)
+                {
+                    Flip();
+                }
+                transform.position = Vector2.MoveTowards(transform.position, PosOriginal, speed * Time.deltaTime);
+                if (transform.position.x == PosOriginal.x)
+                {
+                    anim.SetBool(nameRunning, false);
+                }
             }
-            transform.position = Vector2.MoveTowards(transform.position, new Vector2(Target.position.x, transform.position.y), speed * Time.deltaTime);
+            Collider2D col2 = Physics2D.OverlapCircle(transform.position, range / 3, playerMask);
+            if (col2)
+            {
+                anim.SetBool(nameAttack, true);
+            }
+            else if (col2 == null)
+            {
+                anim.SetBool(nameAttack, false);
+            }
         }
-        else if(col == null)
+        else
         {
-            if (transform.position.x < PosOriginal.x && !IsFacingRight)
-            {
-                Flip();
-            }
-            if (transform.position.x > PosOriginal.x && IsFacingRight)
-            {
-                Flip();
-            }
-            transform.position = Vector2.MoveTowards(transform.position, PosOriginal, speed * Time.deltaTime);
-            if (transform.position.x == PosOriginal.x)
-            {
-                anim.SetBool("isRunning", false);
-            }
-        }
-        Collider2D col2 = Physics2D.OverlapCircle(transform.position, range/3, playerMask);
-        if(col2)
-        {
-            anim.SetBool("isAttack", true);
-        }
-        else if(col2 == null)
-        {
-            anim.SetBool("isAttack", false);
+            anim.SetBool(nameAttack, false);
+            anim.SetBool(nameRunning, false);
         }
     }
 
@@ -92,7 +114,6 @@ public class EnemyBehavior : MonoBehaviour
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
         Gizmos.DrawWireSphere(transform.position, range/2);
-
     }
 
 }

@@ -36,10 +36,19 @@ public class TimeCountDownSkill : MonoBehaviour
 
     public void SwordAttack()
     {
-        if (m_Player.IsCanUseSkill00 && !isUsedSkill00)
+        if (m_Player.IsCanUseSkill00 && !isUsedSkill00 && m_InfoBar.CurMP > 2)
         {
             m_Player.Getanm().SetTrigger("isSwordAttack");
             isUsedSkill00 = true;
+        }
+        if (m_InfoBar.CurMP < 2)
+        {
+            SwordAttack_Btn.GetComponent<Image>().color = Color.gray;
+            ColorBlock cb0 = SwordAttack_Btn.colors;
+            cb0.pressedColor = Color.white;
+            SwordAttack_Btn.colors = cb0;
+            isUsedSkill00 = false;
+
         }
         if (isUsedSkill00)
         {
@@ -59,14 +68,23 @@ public class TimeCountDownSkill : MonoBehaviour
                 SwordAttack_Btn.colors = cb1;
                 SwordAttack_Btn.GetComponent<Image>().color = Color.white;
             }
+
         }
     }
     public void ShieldAttack()
     {
-        if (m_Player.IsCanUseSkill01 && !isUsedSkill01)
+        if (m_Player.IsCanUseSkill01 && !isUsedSkill01 && m_InfoBar.CurMP > 10)
         {
             m_Player.Getanm().SetTrigger("isShieldAttack");
             isUsedSkill01 = true;
+        }
+        if (m_InfoBar.CurMP < 10)
+        {
+            Shield_Btn.GetComponent<Image>().color = Color.gray;
+            ColorBlock cb0 = Shield_Btn.colors;
+            cb0.pressedColor = Color.white;
+            Shield_Btn.colors = cb0;
+            isUsedSkill01 = false;
         }
         if (isUsedSkill01)
         {
@@ -86,14 +104,23 @@ public class TimeCountDownSkill : MonoBehaviour
                 Shield_Btn.colors = cb1;
                 Shield_Btn.GetComponent<Image>().color = Color.white;
             }
+
         }
     }
     public void Buff01()
     {
-        if (m_Player.IsCanUseSkill02 && !isUsedSkill02)
+        if (m_Player.IsCanUseSkill02 && !isUsedSkill02 && m_InfoBar.CurMP > 15)
         {
             m_Player.Getanm().SetTrigger("isBuffDamage");
             isUsedSkill02 = true;
+        }
+        if(m_InfoBar.CurMP < 15)
+        {
+            Buff01_Btn.GetComponent<Image>().color = Color.gray;
+            ColorBlock cb0 = Shield_Btn.colors;
+            cb0.pressedColor = Color.white;
+            Buff01_Btn.colors = cb0;
+            isUsedSkill02 = false;
         }
         if (isUsedSkill02)
         {
@@ -102,12 +129,12 @@ public class TimeCountDownSkill : MonoBehaviour
             cb.pressedColor = Color.white;
             Buff01_Btn.colors = cb;
             Buff01_Btn.GetComponent<Image>().fillAmount -= 1 / TimeSkill_02 * Time.deltaTime;
-            if(Buff01_Btn.GetComponent<Image>().fillAmount >= 0.7f)
+            if (Buff01_Btn.GetComponent<Image>().fillAmount >= 0.7f)
             {
                 m_Player.Damage1 = 20;
                 m_Player.Damage2 = 50;
             }
-            else if(Buff01_Btn.GetComponent<Image>().fillAmount <= 0.6f)
+            else if (Buff01_Btn.GetComponent<Image>().fillAmount <= 0.6f)
             {
                 m_Player.Damage1 = 10;
                 m_Player.Damage2 = 40;
@@ -128,7 +155,7 @@ public class TimeCountDownSkill : MonoBehaviour
     public void Buff02()
     {
         int dem = 0;
-        if (m_Player.IsCanUseSkill03 && !isUsedSkill03)
+        if (m_Player.IsCanUseSkill03 && !isUsedSkill03 && m_InfoBar.CurMP > 20)
         {
             m_Player.Getanm().SetTrigger("isBuffHp");
             dem++;
@@ -141,13 +168,21 @@ public class TimeCountDownSkill : MonoBehaviour
                 {
                     m_InfoBar.SetHp(hp);
                 }
-                else if(hp > MaxHp)
+                else if (hp > MaxHp)
                 {
                     hp = MaxHp;
                     m_InfoBar.SetHp(hp);
                 }
             }
             isUsedSkill03 = true;
+        }
+        if(m_InfoBar.CurMP < 20)
+        {
+            Buff02_Btn.GetComponent<Image>().color = Color.gray;
+            ColorBlock cb0 = Shield_Btn.colors;
+            cb0.pressedColor = Color.white;
+            Buff02_Btn.colors = cb0;
+            isUsedSkill03 = false;
         }
         if (isUsedSkill03)
         {

@@ -166,6 +166,7 @@ public class Player : MonoBehaviour
             anm.SetBool("isFall", false);
             anm.SetBool("isJump", false);
         }
+      
     }
     public void Sword_Attack()
     {
@@ -173,6 +174,7 @@ public class Player : MonoBehaviour
         if (ClickCount00 == 1)
         {
             isCanUseSkill00 = true;
+            m_Info.TakeMP(2);
         }
     }
     public void Shield_Attack()
@@ -181,6 +183,7 @@ public class Player : MonoBehaviour
         if (ClickCount01 == 1)
         {
             isCanUseSkill01 = true;
+            m_Info.TakeMP(10);
         }
     }
     public void Buff_Damage()
@@ -189,6 +192,7 @@ public class Player : MonoBehaviour
         if (ClickCount02 == 1)
         {
             isCanUseSkill02 = true;
+            m_Info.TakeMP(15);
         }
     }
     public void Buff_Hp()
@@ -197,6 +201,7 @@ public class Player : MonoBehaviour
         if (ClickCount03 == 1)
         {
             isCanUseSkill03 = true;
+            m_Info.TakeMP(20);
         }
     }
     public void JumpBtn()
@@ -207,4 +212,5 @@ public class Player : MonoBehaviour
     {
         return anm;
     }
+  
 }
