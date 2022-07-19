@@ -10,6 +10,8 @@ TagManager:
   - Water
   - ItemHP
   - ItemMP
+  - Coin
+  - Diamond
   layers:
   - Default
   - TransparentFX

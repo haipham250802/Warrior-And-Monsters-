@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnemyBehavior : MonoBehaviour
+public class BossBehavior : MonoBehaviour
 {
     public float hitPoint;
     public float maxHitPoint;
@@ -10,20 +10,22 @@ public class EnemyBehavior : MonoBehaviour
     public float speed;
     public string nameRunning;
     public string nameAttack;
-  
+
     public Vector3 PosOriginal;
     public Vector3 offset;
     public HeathBarEnemy health;
     public Transform Target;
     public LayerMask playerMask;
     public GameObject FloatingPoint;
-   
-   
+
+
     private Animator anim;
     private bool IsFacingRight;
     private Player m_player;
-    public GameObject[] ItemsHealth;
 
+    public GameObject ItemsCoin;
+    public GameObject ItemsDiamond;
+    public GameObject ItemsExp;
 
     // Start is called before the first frame update
     void Start()
@@ -45,8 +47,12 @@ public class EnemyBehavior : MonoBehaviour
         hitPoint -= damage;
         if (hitPoint <= 0)
         {
-            int rand = Random.Range(0,ItemsHealth.Length);
-            Instantiate(ItemsHealth[rand],transform.position + offset, Quaternion.identity);
+            for (int i = 0; i < 10; i++)
+            {
+                Instantiate(ItemsCoin, transform.position + offset, Quaternion.identity);
+                Instantiate(ItemsDiamond, transform.position, Quaternion.identity);
+                //Instantiate(ItemsExp, transform.position, Quaternion.identity);
+            }
             Destroy(gameObject);
         }
         health.SetHealth(hitPoint, maxHitPoint);
@@ -54,7 +60,7 @@ public class EnemyBehavior : MonoBehaviour
     }
     void FollowPlayer()
     {
-        if (!m_player.IsGameOver )
+        if (!m_player.IsGameOver)
         {
             Collider2D col = Physics2D.OverlapCircle(transform.position, range, playerMask);
             if (col)
@@ -114,7 +120,7 @@ public class EnemyBehavior : MonoBehaviour
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(transform.position, range);
-        Gizmos.DrawWireSphere(transform.position, range/2);
+        Gizmos.DrawWireSphere(transform.position, range / 2);
     }
 
 }

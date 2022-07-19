@@ -23,6 +23,7 @@ public class TakeDamageEnemy : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         var enemy = collision.gameObject.GetComponent<EnemyBehavior>();
+        var boss = collision.gameObject.GetComponent<BossBehavior>();
         if (enemy)
         {
             if (m_Player.IsCanUseSkill00)
@@ -35,6 +36,21 @@ public class TakeDamageEnemy : MonoBehaviour
             {
                 m_floatingPoint.textMesh().text = damage2.ToString();
                 enemy.TakeHit(damage2);
+                m_Player.IsCanUseSkill01 = false;
+            }
+        }
+        if(boss)
+        {
+            if (m_Player.IsCanUseSkill00)
+            {
+                m_floatingPoint.textMesh().text = damage1.ToString();
+                boss.TakeHit(damage1);
+                m_Player.IsCanUseSkill00 = false;
+            }
+            else if (m_Player.IsCanUseSkill01)
+            {
+                m_floatingPoint.textMesh().text = damage2.ToString();
+                boss.TakeHit(damage2);
                 m_Player.IsCanUseSkill01 = false;
             }
         }

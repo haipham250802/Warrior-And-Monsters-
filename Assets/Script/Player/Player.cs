@@ -9,6 +9,7 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private Info_Bar m_Info;
     private TimeCountDownSkill m_TimeCountDown;
+    private UImanager m_UImanager;
     
 
     [Header("Animator")]
@@ -32,6 +33,9 @@ public class Player : MonoBehaviour
     private int ClickCount01 = 0;
     private int ClickCount02 = 0;
     private int ClickCount03 = 0;
+    private int coin;
+    private int diamond;
+
 
     private bool isCanUseSkill00;
     private bool isCanUseSkill01;
@@ -68,8 +72,11 @@ public class Player : MonoBehaviour
 
         m_Info = FindObjectOfType<Info_Bar>();
         m_TimeCountDown = FindObjectOfType<TimeCountDownSkill>();
+        m_UImanager = FindObjectOfType<UImanager>();
 
         isFacingRight = true;
+        coin = m_UImanager.NumGoldStart1;
+        diamond = m_UImanager.NumDiamondStart1;
     }
 
     void Update()
@@ -86,12 +93,12 @@ public class Player : MonoBehaviour
     }
     void GameOver()
     {
-
         if (m_Info.CurHP <= 0)
         {
             isGameOver = true;
             StopAni();
             anm.SetBool("isDead", true);
+            m_UImanager.ShowDeadGame();
         }
     }
     void StopAni()
@@ -166,7 +173,18 @@ public class Player : MonoBehaviour
             anm.SetBool("isFall", false);
             anm.SetBool("isJump", false);
         }
-      
+        if(collision.gameObject.CompareTag("Coin"))
+        {
+            int rand = Random.Range(60, 80);
+            coin += rand;
+            m_UImanager.SetNumGold(coin);
+        }
+      if(collision.gameObject.CompareTag("Diamond"))
+        {
+            int rand = Random.Range(20, 30);
+            diamond += rand;
+            m_UImanager.SetNumDiamond(diamond);
+        }
     }
     public void Sword_Attack()
     {
