@@ -5,13 +5,12 @@ using UnityEngine;
 public class ItemMP : MonoBehaviour
 {
     Rigidbody2D rb;
-    Info_Bar m_Info;
+
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        m_Info = FindObjectOfType<Info_Bar>();
     }
 
     // Update is called once per frame
@@ -24,17 +23,17 @@ public class ItemMP : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            float MaxMp = m_Info.getMP();
-            float Mp = m_Info.CurMP;
+            int MaxMp = DataPlayer.GetMaxMP();
+            int Mp = DataPlayer.GetMP();
             Mp = Mp + 10;
             if (Mp < MaxMp)
             {
-                m_Info.SetMp(Mp);
+                DataPlayer.SetMP(Mp);
             }
             else if (Mp > MaxMp)
             {
                 Mp = MaxMp;
-                m_Info.SetMp(Mp);
+                DataPlayer.SetMP(Mp);
             }
             Destroy(gameObject);
         }

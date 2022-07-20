@@ -4,20 +4,30 @@ using UnityEngine;
 
 public class HitBoxEnemy : MonoBehaviour
 {
-    Info_Bar m_inf;
-    public float Damage;
+
+    EnemyBehavior[] m_enemyBehavior;
+    public int Damage;
 
     private void Start()
     {
-        m_inf = FindObjectOfType<Info_Bar>();
+        m_enemyBehavior = FindObjectsOfType<EnemyBehavior>();
+
+    }
+    private void Update()
+    {
+       
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         var player = collision.gameObject.GetComponent<Player>();
-
-        if(player)
+        for (int i = 0; i < m_enemyBehavior.Length; i++)
         {
-            m_inf.TakeHp(Damage);
+            if (player && m_enemyBehavior[i].IsAttack)
+            {
+                Debug.Log("da danh");
+                DataPlayer.TakeHP(Damage);
+                m_enemyBehavior[i].IsAttack = false;
+            }
         }
     }
 }

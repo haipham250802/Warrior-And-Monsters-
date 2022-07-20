@@ -28,13 +28,13 @@ public class TakeDamageEnemy : MonoBehaviour
         {
             if (m_Player.IsCanUseSkill00)
             {
-                m_floatingPoint.textMesh().text = damage1.ToString();
+                m_floatingPoint.textMesh().text = $"-{damage1}" ;
                 enemy.TakeHit(damage1);
                 m_Player.IsCanUseSkill00 = false;
             }
             else if (m_Player.IsCanUseSkill01)
             {
-                m_floatingPoint.textMesh().text = damage2.ToString();
+                m_floatingPoint.textMesh().text = $"-{damage2}";
                 enemy.TakeHit(damage2);
                 m_Player.IsCanUseSkill01 = false;
             }
@@ -43,13 +43,13 @@ public class TakeDamageEnemy : MonoBehaviour
         {
             if (m_Player.IsCanUseSkill00)
             {
-                m_floatingPoint.textMesh().text = damage1.ToString();
+                m_floatingPoint.textMesh().text = $"-{damage1}";
                 boss.TakeHit(damage1);
                 m_Player.IsCanUseSkill00 = false;
             }
             else if (m_Player.IsCanUseSkill01)
             {
-                m_floatingPoint.textMesh().text = damage2.ToString();
+                m_floatingPoint.textMesh().text = $"-{damage2}";
                 boss.TakeHit(damage2);
                 m_Player.IsCanUseSkill01 = false;
             }

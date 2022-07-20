@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class TimeCountDownSkill : MonoBehaviour
 {
     private Player m_Player;
-    private Info_Bar m_InfoBar;
 
     [Header("Buttons")]
     public Button SwordAttack_Btn;
@@ -31,17 +30,16 @@ public class TimeCountDownSkill : MonoBehaviour
     void Start()
     {
         m_Player = FindObjectOfType<Player>();
-        m_InfoBar = FindObjectOfType<Info_Bar>();
     }
 
     public void SwordAttack()
     {
-        if (m_Player.IsCanUseSkill00 && !isUsedSkill00 )
+        if (m_Player.IsCanUseSkill00 && !isUsedSkill00)
         {
             m_Player.Getanm().SetTrigger("isSwordAttack");
             isUsedSkill00 = true;
         }
-      
+
         if (isUsedSkill00)
         {
             SwordAttack_Btn.GetComponent<Image>().color = Color.gray;
@@ -65,12 +63,12 @@ public class TimeCountDownSkill : MonoBehaviour
     }
     public void ShieldAttack()
     {
-        if (m_Player.IsCanUseSkill01 && !isUsedSkill01 )
+        if (m_Player.IsCanUseSkill01 && !isUsedSkill01)
         {
             m_Player.Getanm().SetTrigger("isShieldAttack");
             isUsedSkill01 = true;
         }
-      
+
         if (isUsedSkill01)
         {
             Shield_Btn.GetComponent<Image>().color = Color.gray;
@@ -99,7 +97,7 @@ public class TimeCountDownSkill : MonoBehaviour
             m_Player.Getanm().SetTrigger("isBuffDamage");
             isUsedSkill02 = true;
         }
-       
+
         if (isUsedSkill02)
         {
             Buff01_Btn.GetComponent<Image>().color = Color.gray;
@@ -107,15 +105,23 @@ public class TimeCountDownSkill : MonoBehaviour
             cb.pressedColor = Color.white;
             Buff01_Btn.colors = cb;
             Buff01_Btn.GetComponent<Image>().fillAmount -= 1 / TimeSkill_02 * Time.deltaTime;
-            if (Buff01_Btn.GetComponent<Image>().fillAmount >= 0.7f)
+            float Damage1 = m_Player.CurDamage11;
+            float Damage2 = m_Player.CurDamage21;
+            if (Buff01_Btn.GetComponent<Image>().fillAmount > 0.7f)
             {
-                m_Player.Damage1 = 20;
-                m_Player.Damage2 = 50;
+                if (m_Player.Damage1 == m_Player.CurDamage11)
+                {
+                    m_Player.Damage1 += 10;
+                }
+                if (m_Player.Damage2 == m_Player.CurDamage21)
+                {
+                    m_Player.Damage2 += 20;
+                }
             }
-            else if (Buff01_Btn.GetComponent<Image>().fillAmount <= 0.6f)
+            else if (Buff01_Btn.GetComponent<Image>().fillAmount < 0.7f)
             {
-                m_Player.Damage1 = 10;
-                m_Player.Damage2 = 40;
+                m_Player.Damage1 = Damage1;
+                m_Player.Damage2 = Damage2;
             }
             if (Buff01_Btn.GetComponent<Image>().fillAmount <= 0)
             {
@@ -139,22 +145,22 @@ public class TimeCountDownSkill : MonoBehaviour
             dem++;
             if (dem == 1)
             {
-                float MaxHp = m_InfoBar.getHP();
-                float hp = m_InfoBar.CurHP;
+                int MaxHp = DataPlayer.GetMaxHP();
+                int hp = DataPlayer.GetHP();
                 hp = hp + 50;
                 if (hp < MaxHp)
                 {
-                    m_InfoBar.SetHp(hp);
+                    DataPlayer.SetHP(hp);
                 }
                 else if (hp > MaxHp)
                 {
                     hp = MaxHp;
-                    m_InfoBar.SetHp(hp);
+                    DataPlayer.SetHP(hp);
                 }
             }
             isUsedSkill03 = true;
         }
-      
+
         if (isUsedSkill03)
         {
             Buff02_Btn.GetComponent<Image>().color = Color.gray;

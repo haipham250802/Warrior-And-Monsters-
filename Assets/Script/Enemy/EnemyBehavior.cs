@@ -6,11 +6,17 @@ public class EnemyBehavior : MonoBehaviour
 {
     public float hitPoint;
     public float maxHitPoint;
+
     public float range;
     public float speed;
+
     public string nameRunning;
     public string nameAttack;
-  
+
+    public float TimeAttack;
+    public float CurTimeAttack;
+
+
     public Vector3 PosOriginal;
     public Vector3 offset;
     public HeathBarEnemy health;
@@ -20,15 +26,19 @@ public class EnemyBehavior : MonoBehaviour
    
    
     private Animator anim;
+    private bool isAttack;
     private bool IsFacingRight;
     private Player m_player;
     public GameObject[] ItemsHealth;
+
+    public bool IsAttack { get => isAttack; set => isAttack = value; }
 
 
     // Start is called before the first frame update
     void Start()
     {
         hitPoint = maxHitPoint;
+        CurTimeAttack = TimeAttack;
         health.SetHealth(hitPoint, maxHitPoint);
         anim = GetComponent<Animator>();
         m_player = FindObjectOfType<Player>();
@@ -89,7 +99,17 @@ public class EnemyBehavior : MonoBehaviour
             Collider2D col2 = Physics2D.OverlapCircle(transform.position, range / 3, playerMask);
             if (col2)
             {
-                anim.SetBool(nameAttack, true);
+                if (CurTimeAttack > 0)
+                {
+                    CurTimeAttack -= Time.deltaTime;
+                    anim.SetBool(nameAttack,false);
+                }
+                else if (CurTimeAttack <= 0)
+                {
+                    isAttack = true;
+                    anim.SetBool(nameAttack, true);
+                    CurTimeAttack = TimeAttack;
+                }
             }
             else if (col2 == null)
             {

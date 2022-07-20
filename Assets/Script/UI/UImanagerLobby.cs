@@ -2,13 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 public class UImanagerLobby : MonoBehaviour
-{
+{/*
     public Text MaxHP;
     public Text MaxMP;
     public Text NumGold;
     public Text NumDiamond;
-
+    */
 
     Player m_Player;
     UImanager m_UI;
@@ -22,7 +23,11 @@ public class UImanagerLobby : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        MaxHP.text = m_Player.MaxHealth.ToString();
-        MaxMP.text = m_Player.MaxMP.ToString();
+       /* MaxHP.text = m_Player.MaxHealth.ToString();
+        MaxMP.text = m_Player.MaxMP.ToString();*/
+    }
+    public void LoadSecene()
+    {
+        SceneManager.LoadScene(1);
     }
 }

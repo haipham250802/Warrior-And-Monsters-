@@ -47,7 +47,7 @@ public class main_Camera : MonoBehaviour
             {
                 movePosition.y = LimitMinY;
             }
-            else if (movePosition.x > LimitMaxX)
+            if (movePosition.x > LimitMaxX)
             {
                 movePosition.x = LimitMaxX;
             }

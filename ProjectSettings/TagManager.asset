@@ -12,6 +12,7 @@ TagManager:
   - ItemMP
   - Coin
   - Diamond
+  - XP
   layers:
   - Default
   - TransparentFX

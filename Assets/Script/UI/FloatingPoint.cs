@@ -16,7 +16,7 @@ public class FloatingPoint : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Destroy(gameObject,0.1f);
+        Destroy(gameObject,0.2f);
     }
     private void FixedUpdate()
     {

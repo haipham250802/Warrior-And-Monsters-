@@ -1,25 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
+
 
 public class Player : MonoBehaviour
 {
+    public static Player instance;
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else
+        { Destroy(this); }
+    }
 
     private Rigidbody2D rb;
-    private Info_Bar m_Info;
     private TimeCountDownSkill m_TimeCountDown;
     private UImanager m_UImanager;
-    
-
+    private WeponId1 m_Wp1;
+    private WeponId2 m_Wp2;
+    private BossBehavior m_Boss;
     [Header("Animator")]
     public Animator anm;
 
     [Header("Parameters")]
     public float Speed;
     public float JumpForce;
-    [SerializeField]
-    private float maxHealth;
+   
     [SerializeField]
     private float maxMP;
     [SerializeField]
@@ -28,14 +37,16 @@ public class Player : MonoBehaviour
     private float damage2;
     [Header("Object")]
     public GameObject SKills;
-    
+
     private int ClickCount00 = 0;
     private int ClickCount01 = 0;
     private int ClickCount02 = 0;
     private int ClickCount03 = 0;
     private int coin;
     private int diamond;
-
+    private float CurDamage1;
+    private float CurDamage2;
+    
 
     private bool isCanUseSkill00;
     private bool isCanUseSkill01;
@@ -46,8 +57,9 @@ public class Player : MonoBehaviour
     private bool isGrounded;
     private bool IsCanDoubleJump;
     private bool isGameOver;
-
-  
+    private float MoveSpeed;
+    private bool isDamagePlus1;
+    private bool isDamagePlus2;
 
 
     public bool IsGameOver { get => isGameOver; private set => isGameOver = value; }
@@ -62,27 +74,53 @@ public class Player : MonoBehaviour
     public bool IsFacingRight { get => isFacingRight; set => isFacingRight = value; }
     public float Damage1 { get => damage1; set => damage1 = value; }
     public float Damage2 { get => damage2; set => damage2 = value; }
-    public float MaxHealth { get => maxHealth; set => maxHealth = value; }
+
     public float MaxMP { get => maxMP; set => maxMP = value; }
+    public float MoveSpeed1 { get => MoveSpeed; set => MoveSpeed = value; }
+    public float CurDamage11 { get => CurDamage1; set => CurDamage1 = value; }
+    public float CurDamage21 { get => CurDamage2; set => CurDamage2 = value; }
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anm = GetComponent<Animator>();
 
-        m_Info = FindObjectOfType<Info_Bar>();
+
         m_TimeCountDown = FindObjectOfType<TimeCountDownSkill>();
         m_UImanager = FindObjectOfType<UImanager>();
+        m_Wp1 = FindObjectOfType<WeponId1>();
+        m_Wp2 = FindObjectOfType<WeponId2>();
+        m_Boss = FindObjectOfType<BossBehavior>();
 
         isFacingRight = true;
         coin = m_UImanager.NumGoldStart1;
         diamond = m_UImanager.NumDiamondStart1;
+        CurDamage1 = damage1;
+        CurDamage2 = damage2;
     }
 
     void Update()
     {
         MainAttack();
         GameOver();
+        DamagePlusToWepon();
+        LevelUp();
+    }
+    void DamagePlusToWepon()
+    {
+
+        if (DataPlayer.IsOwnWeponWithId(1) && !isDamagePlus1)
+        {
+            damage1 += m_Wp1.Damage1;
+            CurDamage1 = damage1;
+            isDamagePlus1 = true;
+        }
+        if (DataPlayer.IsOwnWeponWithId(2) && !isDamagePlus2)
+        {
+            damage2 += m_Wp2.Damage2;
+            CurDamage2 = damage2;
+            isDamagePlus2 = true;
+        }
     }
     void MainAttack()
     {
@@ -93,7 +131,7 @@ public class Player : MonoBehaviour
     }
     void GameOver()
     {
-        if (m_Info.CurHP <= 0)
+        if (DataPlayer.GetHP() <= 0)
         {
             isGameOver = true;
             StopAni();
@@ -111,7 +149,7 @@ public class Player : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        float MoveSpeed = Input.GetAxis("Horizontal");
+        MoveSpeed = Input.GetAxis("Horizontal");
         rb.velocity = new Vector2(Speed * MoveSpeed, rb.velocity.y);
         anm.SetFloat("isRun", Mathf.Abs(MoveSpeed));
         if (MoveSpeed > 0 && !isFacingRight)
@@ -173,28 +211,46 @@ public class Player : MonoBehaviour
             anm.SetBool("isFall", false);
             anm.SetBool("isJump", false);
         }
-        if(collision.gameObject.CompareTag("Coin"))
+        if (collision.gameObject.CompareTag("Coin"))
         {
             int rand = Random.Range(60, 80);
-            coin += rand;
-            m_UImanager.SetNumGold(coin);
+            DataPlayer.AddCoin(rand);
         }
-      if(collision.gameObject.CompareTag("Diamond"))
+        if (collision.gameObject.CompareTag("Diamond"))
         {
             int rand = Random.Range(20, 30);
-            diamond += rand;
-            m_UImanager.SetNumDiamond(diamond);
+            DataPlayer.AddDiamond(rand);
+        }
+        if(collision.gameObject.CompareTag("XP"))
+        {
+            int rand = Random.Range(m_Boss.MinXP, m_Boss.MaxXP);
+            DataPlayer.AddXP(rand);
+        }
+    }
+    void LevelUp()
+    {
+        int MaxExp = DataPlayer.GetMaxXP();
+        int CurExp = DataPlayer.GetXP();
+        if(CurExp >= MaxExp)
+        {
+            DataPlayer.Addlevel(1);
+            DataPlayer.SetXP(0);
+            int curLevel = DataPlayer.GetLevel();
+            DataPlayer.SetMaxXP(curLevel);
+            DataPlayer.AddMaxHP(curLevel * 50);
+            int Hp = DataPlayer.GetMaxHP();
+            DataPlayer.SetHP(Hp);
         }
     }
     public void Sword_Attack()
     {
         ClickCount00++;
-        if (ClickCount00 == 1 && m_Info.CurMP >= 2)
+        if (ClickCount00 == 1 && DataPlayer.GetMP() >= 2)
         {
             isCanUseSkill00 = true;
-            m_Info.TakeMP(2);
+            DataPlayer.TakeMP(2);
         }
-        if(m_Info.CurMP < 2)
+        if (DataPlayer.GetMP() < 2)
         {
             ClickCount00 = 0;
         }
@@ -202,12 +258,14 @@ public class Player : MonoBehaviour
     public void Shield_Attack()
     {
         ClickCount01++;
-        if (ClickCount01 == 1 && m_Info.CurMP >= 10)
+        if (ClickCount01 == 1 && DataPlayer.GetMP() >= 10)
         {
+
             isCanUseSkill01 = true;
-            m_Info.TakeMP(10);
+            DataPlayer.TakeMP(10);
+
         }
-        if(m_Info.CurMP < 10)
+        if (DataPlayer.GetMP() < 10)
         {
             ClickCount01 = 0;
         }
@@ -215,12 +273,12 @@ public class Player : MonoBehaviour
     public void Buff_Damage()
     {
         ClickCount02++;
-        if (ClickCount02 == 1 && m_Info.CurMP >= 15)
+        if (ClickCount02 == 1 && DataPlayer.GetMP() >= 15)
         {
             isCanUseSkill02 = true;
-            m_Info.TakeMP(15);
+            DataPlayer.TakeMP(15);
         }
-        if(m_Info.CurMP < 15)
+        if (DataPlayer.GetMP() < 15)
         {
             ClickCount02 = 0;
         }
@@ -228,12 +286,12 @@ public class Player : MonoBehaviour
     public void Buff_Hp()
     {
         ClickCount03++;
-        if (ClickCount03 == 1 && m_Info.CurMP >= 20)
+        if (ClickCount03 == 1 && DataPlayer.GetMP() >= 20)
         {
             isCanUseSkill03 = true;
-            m_Info.TakeMP(20);
+            DataPlayer.TakeMP(20);
         }
-        if(m_Info.CurMP < 20)
+        if (DataPlayer.GetMP() < 20)
         {
             ClickCount03 = 0;
         }
@@ -246,5 +304,5 @@ public class Player : MonoBehaviour
     {
         return anm;
     }
-  
+
 }

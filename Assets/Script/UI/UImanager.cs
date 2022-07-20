@@ -4,61 +4,53 @@ using UnityEngine;
 using UnityEngine.UI;
 public class UImanager : MonoBehaviour
 {
-    public Text NumHealth;
-    public Text NumMP;
-    public Text NumGold;
-    public Text NumDiamond;
+    public Text NumHealthTxt;
+    public Text NumMPTxt;
+    public Text NumXPTxt;
+    public Text NumGoldTxt;
+    public Text NumDiamondTxt;
+    public Text NumLevelTxt;
+
+    public Slider sliderXP;
+    public Slider sliderHP;
+    public Slider sliderMP;
+
     public GameObject DeadGamePanel;
     public Player m_player;
-    [SerializeField]
+
     private int NumGoldStart;
-    [SerializeField]
     private int NumDiamondStart;
 
-    float curGold;
     public int NumDiamondStart1 { get => NumDiamondStart; set => NumDiamondStart = value; }
     public int NumGoldStart1 { get => NumGoldStart; set => NumGoldStart = value; }
 
     void Start()
     {
         DeadGamePanel.SetActive(false);
-        SetNumGold(NumGoldStart);
-        SetNumDiamond(NumDiamondStart);
     }
- 
-    public void SetNumhealth(float numHealth)
+    private void Update()
     {
-        if (NumHealth)
-        {
-            if(numHealth <= 0)
-            {
-                numHealth = 0;
-            }
-            NumHealth.text = numHealth.ToString() + " / " + m_player.MaxHealth.ToString();
-        }
+        UpdateView();
     }
-    public void SetNumGold(int numGold)
+    public void UpdateView()
     {
-        if(NumGold)
-        {
-            NumGold.text = numGold.ToString();
-        }
-    }
-    public void SetNumDiamond(int numDiamond)
-    {
-        if (NumDiamond)
-        {
-            NumDiamond.text = numDiamond.ToString();
-        }
+        NumHealthTxt.text = DataPlayer.GetHP() + " / " + DataPlayer.GetMaxHP();
+        NumMPTxt.text = DataPlayer.GetMP() + " / " + DataPlayer.GetMaxMP();
+        NumXPTxt.text = DataPlayer.GetXP().ToString() + " / " + DataPlayer.GetMaxXP();
+        NumGoldTxt.text = DataPlayer.GetCoin().ToString();
+        NumDiamondTxt.text = DataPlayer.GetDiamond().ToString();
+        NumLevelTxt.text = "LV " + DataPlayer.GetLevel().ToString();
+
+        sliderXP.maxValue = DataPlayer.GetMaxXP();
+        sliderXP.value = DataPlayer.GetXP();
+
+        sliderHP.maxValue = DataPlayer.GetMaxHP();
+        sliderHP.value = DataPlayer.GetHP();
+
+        sliderMP.maxValue = DataPlayer.GetMaxMP();
+        sliderMP.value = DataPlayer.GetMP();
     }
 
-    public void SetNumMP(float numMP)
-    {
-        if (NumMP)
-        {
-            NumMP.text = numMP.ToString() + " / " + m_player.MaxMP.ToString();
-        }
-    }
     public void ShowDeadGame()
     {
         DeadGamePanel.SetActive(true);

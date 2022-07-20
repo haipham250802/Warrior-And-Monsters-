@@ -101,7 +101,7 @@ Transform:
   m_GameObject: {fileID: 8902827950398793358}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -7.075, y: 0.809, z: 0}
-  m_LocalScale: {x: 0.3, y: 0.3, z: 1}
+  m_LocalScale: {x: 1.2, y: 1.2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8902827950728536957}
@@ -175,20 +175,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitPoint: 0
   maxHitPoint: 100
-  range: 2
+  range: 3
   speed: 0.5
-  limit: 2.5
   nameRunning: isRunning
   nameAttack: isAttack
-  PosOriginal: {x: -10, y: 0.809, z: 0}
-  offset: {x: 0.5, y: 0.6, z: 0}
+  TimeAttack: 2
+  CurTimeAttack: 0
+  PosOriginal: {x: -27.02, y: 4.29, z: 0}
+  offset: {x: 1.5, y: 2, z: 0}
   health: {fileID: 8902827950728536945}
   Target: {fileID: 0}
   playerMask:
     serializedVersion: 2
     m_Bits: 128
   FloatingPoint: {fileID: 1278266184496819556, guid: 756823cf8b3932b4d95fb76c628303ba, type: 3}
-  Items:
+  ItemsHealth:
   - {fileID: 3634493525759488728, guid: 082769d4fef24194690e3be6df2e336e, type: 3}
   - {fileID: 5985343088989694801, guid: 6f0d9d4aff446a744882e7c5e43e6000, type: 3}
 --- !u!61 &8902827950398793346

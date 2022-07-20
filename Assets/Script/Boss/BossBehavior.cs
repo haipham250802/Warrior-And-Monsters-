@@ -4,12 +4,16 @@ using UnityEngine;
 
 public class BossBehavior : MonoBehaviour
 {
+    public int BossID;
+
     public float hitPoint;
     public float maxHitPoint;
     public float range;
     public float speed;
     public string nameRunning;
     public string nameAttack;
+    public float TimeAttack;
+    public float CurTimeAttack;
 
     public Vector3 PosOriginal;
     public Vector3 offset;
@@ -21,11 +25,20 @@ public class BossBehavior : MonoBehaviour
 
     private Animator anim;
     private bool IsFacingRight;
+    private bool isAttack;
     private Player m_player;
+
+    private int minXP = 0;
+    private int maxXP = 0;
+
 
     public GameObject ItemsCoin;
     public GameObject ItemsDiamond;
     public GameObject ItemsExp;
+
+    public bool IsAttack { get => isAttack; set => isAttack = value; }
+    public int MinXP { get => minXP; set => minXP = value; }
+    public int MaxXP { get => maxXP; set => maxXP = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +49,8 @@ public class BossBehavior : MonoBehaviour
         m_player = FindObjectOfType<Player>();
 
         IsFacingRight = true;
+        minXP = BossID * 100;
+        maxXP = BossID * 120;
 
     }
     private void Update()
@@ -51,7 +66,7 @@ public class BossBehavior : MonoBehaviour
             {
                 Instantiate(ItemsCoin, transform.position + offset, Quaternion.identity);
                 Instantiate(ItemsDiamond, transform.position, Quaternion.identity);
-                //Instantiate(ItemsExp, transform.position, Quaternion.identity);
+                Instantiate(ItemsExp, transform.position, Quaternion.identity);
             }
             Destroy(gameObject);
         }
@@ -95,7 +110,17 @@ public class BossBehavior : MonoBehaviour
             Collider2D col2 = Physics2D.OverlapCircle(transform.position, range / 3, playerMask);
             if (col2)
             {
-                anim.SetBool(nameAttack, true);
+                if (CurTimeAttack > 0)
+                {
+                    CurTimeAttack -= Time.deltaTime;
+                    anim.SetBool(nameAttack, false);
+                }
+                else if (CurTimeAttack <= 0)
+                {
+                    isAttack = true;
+                    anim.SetBool(nameAttack, true);
+                    CurTimeAttack = TimeAttack;
+                }
             }
             else if (col2 == null)
             {
