@@ -566,6 +566,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8902827950398793345, guid: a21472a9c3cae1d4eb20e42343aeef17, type: 3}
+      propertyPath: iD
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8902827950398793345, guid: a21472a9c3cae1d4eb20e42343aeef17, type: 3}
       propertyPath: Target
       value: 
       objectReference: {fileID: 584483804}
@@ -729,6 +733,10 @@ PrefabInstance:
     - target: {fileID: 8902827950398793344, guid: a21472a9c3cae1d4eb20e42343aeef17, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8902827950398793345, guid: a21472a9c3cae1d4eb20e42343aeef17, type: 3}
+      propertyPath: iD
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8902827950398793345, guid: a21472a9c3cae1d4eb20e42343aeef17, type: 3}
       propertyPath: Target
@@ -2707,6 +2715,10 @@ PrefabInstance:
     - target: {fileID: 8902827950398793344, guid: a21472a9c3cae1d4eb20e42343aeef17, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8902827950398793345, guid: a21472a9c3cae1d4eb20e42343aeef17, type: 3}
+      propertyPath: iD
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8902827950398793345, guid: a21472a9c3cae1d4eb20e42343aeef17, type: 3}
       propertyPath: Target
@@ -5921,16 +5933,20 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8902827950398793345, guid: a21472a9c3cae1d4eb20e42343aeef17, type: 3}
+      propertyPath: iD
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8902827950398793345, guid: a21472a9c3cae1d4eb20e42343aeef17, type: 3}
       propertyPath: Target
       value: 
       objectReference: {fileID: 584483804}
     - target: {fileID: 8902827950398793345, guid: a21472a9c3cae1d4eb20e42343aeef17, type: 3}
       propertyPath: PosOriginal.x
-      value: -15
+      value: -16.39
       objectReference: {fileID: 0}
     - target: {fileID: 8902827950398793345, guid: a21472a9c3cae1d4eb20e42343aeef17, type: 3}
       propertyPath: PosOriginal.y
-      value: 14.41
+      value: 14.37
       objectReference: {fileID: 0}
     - target: {fileID: 8902827950398793358, guid: a21472a9c3cae1d4eb20e42343aeef17, type: 3}
       propertyPath: m_Name
@@ -6159,12 +6175,16 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8902827950398793345, guid: a21472a9c3cae1d4eb20e42343aeef17, type: 3}
+      propertyPath: iD
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8902827950398793345, guid: a21472a9c3cae1d4eb20e42343aeef17, type: 3}
       propertyPath: Target
       value: 
       objectReference: {fileID: 584483804}
     - target: {fileID: 8902827950398793345, guid: a21472a9c3cae1d4eb20e42343aeef17, type: 3}
       propertyPath: PosOriginal.x
-      value: -15
+      value: -16.39
       objectReference: {fileID: 0}
     - target: {fileID: 8902827950398793358, guid: a21472a9c3cae1d4eb20e42343aeef17, type: 3}
       propertyPath: m_Name
@@ -9831,6 +9851,10 @@ PrefabInstance:
     - target: {fileID: 8902827950398793344, guid: a21472a9c3cae1d4eb20e42343aeef17, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8902827950398793345, guid: a21472a9c3cae1d4eb20e42343aeef17, type: 3}
+      propertyPath: iD
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8902827950398793345, guid: a21472a9c3cae1d4eb20e42343aeef17, type: 3}
       propertyPath: Target
@@ -14363,7 +14387,6 @@ MonoBehaviour:
   sliderHP: {fileID: 1436053911}
   sliderMP: {fileID: 1888272213}
   DeadGamePanel: {fileID: 847002227}
-  m_player: {fileID: 584483808}
 --- !u!1 &1756639775
 GameObject:
   m_ObjectHideFlags: 0
@@ -16666,7 +16689,7 @@ MonoBehaviour:
   hitPoint: 0
   maxHitPoint: 100
   range: 7
-  speed: 0.5
+  speed: 1
   nameRunning: isRunBoss01
   nameAttack: isAttackBoss01
   TimeAttack: 4
@@ -16682,6 +16705,7 @@ MonoBehaviour:
   ItemsCoin: {fileID: 5147241024655508947, guid: 64df9fc141463634db3f05738dafa49c, type: 3}
   ItemsDiamond: {fileID: 4415502360770549542, guid: bf7ce4bbad69cc74c91a1f6e62134c9f, type: 3}
   ItemsExp: {fileID: 8510518760794791725, guid: 9af44ef1ae766df438f7aea64d3c27b0, type: 3}
+  Meteorite: {fileID: 0}
 --- !u!1 &2057548629
 GameObject:
   m_ObjectHideFlags: 0

@@ -4,19 +4,10 @@ using UnityEngine;
 
 public class Items : MonoBehaviour
 {
-    Rigidbody2D rb;
-
-    // Start is called before the first frame update
-    void Start()
+    EnemyBehavior m_enemy;
+    private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
-
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        m_enemy = FindObjectOfType<EnemyBehavior>();
     }
 
     private void OnCollisionEnter2D(Collision2D collision)
@@ -25,7 +16,7 @@ public class Items : MonoBehaviour
         {
             int MaxHp = DataPlayer.GetMaxHP();
             int hp = DataPlayer.GetHP();
-            hp = hp + 10;
+            hp = hp + (m_enemy.ID * 10 );
             if (hp < MaxHp)
             {
                 DataPlayer.SetHP(hp);

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnemyBehavior : MonoBehaviour
 {
+    [SerializeField]
+    private int iD;
     public float hitPoint;
     public float maxHitPoint;
 
@@ -31,7 +33,11 @@ public class EnemyBehavior : MonoBehaviour
     private Player m_player;
     public GameObject[] ItemsHealth;
 
+
+    public GameObject Bullet;
+    public GameObject PosBullet;
     public bool IsAttack { get => isAttack; set => isAttack = value; }
+    public int ID { get => iD; set => iD = value; }
 
 
     // Start is called before the first frame update
@@ -49,6 +55,14 @@ public class EnemyBehavior : MonoBehaviour
     private void Update()
     {
         FollowPlayer();
+        if (ID == 1)
+        {
+            AttackId1();
+        }
+        if (ID == 2)
+        {
+            AttackId2();
+        }
     }
     public void TakeHit(float damage)
     {
@@ -96,13 +110,25 @@ public class EnemyBehavior : MonoBehaviour
                     anim.SetBool(nameRunning, false);
                 }
             }
+
+        }
+        else
+        {
+            anim.SetBool(nameAttack, false);
+            anim.SetBool(nameRunning, false);
+        }
+    }
+    void AttackId1()
+    {
+        if (!m_player.IsGameOver)
+        {
             Collider2D col2 = Physics2D.OverlapCircle(transform.position, range / 3, playerMask);
             if (col2)
             {
                 if (CurTimeAttack > 0)
                 {
                     CurTimeAttack -= Time.deltaTime;
-                    anim.SetBool(nameAttack,false);
+                    anim.SetBool(nameAttack, false);
                 }
                 else if (CurTimeAttack <= 0)
                 {
@@ -118,11 +144,30 @@ public class EnemyBehavior : MonoBehaviour
         }
         else
         {
+            isAttack = false;
             anim.SetBool(nameAttack, false);
             anim.SetBool(nameRunning, false);
         }
     }
+    void AttackId2()
+    {
+        Collider2D col = Physics2D.OverlapCircle(transform.position, range, playerMask);
+        if(col)
+        {
+            if (CurTimeAttack > 0)
+            {
+                CurTimeAttack -= Time.deltaTime;
 
+            }
+            else if (CurTimeAttack <= 0)
+            {
+                isAttack = true;
+                Instantiate(Bullet, PosBullet.transform.position, Quaternion.identity);
+                CurTimeAttack = TimeAttack;
+                Debug.LogWarning("da ban dan");
+            }
+        }
+    }
     void Flip()
     {
         IsFacingRight = !IsFacingRight;

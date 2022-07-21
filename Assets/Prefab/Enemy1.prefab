@@ -173,10 +173,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc621beb77ab5bf40b8ace42c3ce67ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ID: 1
   hitPoint: 0
-  maxHitPoint: 100
+  maxHitPoint: 250
   range: 3
-  speed: 0.5
+  speed: 1
   nameRunning: isRunning
   nameAttack: isAttack
   TimeAttack: 2

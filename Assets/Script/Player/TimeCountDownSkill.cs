@@ -26,10 +26,15 @@ public class TimeCountDownSkill : MonoBehaviour
 
     public bool IsUsedSkill00 { get => isUsedSkill00; set => isUsedSkill00 = value; }
     public bool IsUsedSkill01 { get => isUsedSkill01; set => isUsedSkill01 = value; }
+    int Damage1;
+    int Damage2;
 
     void Start()
     {
         m_Player = FindObjectOfType<Player>();
+
+        Damage1 = DataPlayer.GetDamage1() + 10;
+        Damage2 = DataPlayer.GetDamage2() + 20;
     }
 
     public void SwordAttack()
@@ -89,7 +94,9 @@ public class TimeCountDownSkill : MonoBehaviour
             }
 
         }
+
     }
+
     public void Buff01()
     {
         if (m_Player.IsCanUseSkill02 && !isUsedSkill02)
@@ -105,23 +112,16 @@ public class TimeCountDownSkill : MonoBehaviour
             cb.pressedColor = Color.white;
             Buff01_Btn.colors = cb;
             Buff01_Btn.GetComponent<Image>().fillAmount -= 1 / TimeSkill_02 * Time.deltaTime;
-            float Damage1 = m_Player.CurDamage11;
-            float Damage2 = m_Player.CurDamage21;
+
             if (Buff01_Btn.GetComponent<Image>().fillAmount > 0.7f)
             {
-                if (m_Player.Damage1 == m_Player.CurDamage11)
-                {
-                    m_Player.Damage1 += 10;
-                }
-                if (m_Player.Damage2 == m_Player.CurDamage21)
-                {
-                    m_Player.Damage2 += 20;
-                }
+                DataPlayer.ReceiveBuffDamage1ToSkill(Damage1);
+                DataPlayer.ReceiveBuffDamage2ToSkill(Damage2);
             }
             else if (Buff01_Btn.GetComponent<Image>().fillAmount < 0.7f)
             {
-                m_Player.Damage1 = Damage1;
-                m_Player.Damage2 = Damage2;
+                DataPlayer.SetDamage1(m_Player.CurDamage11);
+                DataPlayer.SetDamage2(m_Player.CurDamage21);
             }
             if (Buff01_Btn.GetComponent<Image>().fillAmount <= 0)
             {

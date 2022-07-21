@@ -14,6 +14,8 @@ public static class DataPlayer
         {
             allData = new AllData
             {
+                IsPlusDamage1 = false,
+                IsPlusDamage2 = false,
 
                 HP = 200,
                 MaxHP = 200,
@@ -28,6 +30,10 @@ public static class DataPlayer
                 diamond = 300,
 
                 Level = 1,
+
+                damage1 = 11,
+                damage2 = 41,
+
                 WeponList = new List<int> { },
             };
             SaveData();
@@ -60,20 +66,20 @@ public static class DataPlayer
     public static void SetMaxHP(int value)
     {
         allData.SetMaxHP(value);
+        SaveData();
     }
     public static void SetHP(int value)
     {
         allData.SetHP(value);
         SaveData();
     }
-    public  static void TakeHP(int value)
+    public static void TakeHP(int value)
     {
         allData.TakeHP(value);
     }
     public static void AddMaxHP(int value)
     {
         allData.AddMaxHP(value);
-        SaveData();
     }
     public static int GetMP()
     {
@@ -93,6 +99,11 @@ public static class DataPlayer
         allData.SetMP(value);
         SaveData();
     }
+    public static void AddXP(int value)
+    {
+        allData.AddXP(value);
+        SaveData();
+    }
     public static void TakeMP(int value)
     {
         allData.TakeMP(value);
@@ -104,20 +115,20 @@ public static class DataPlayer
     public static void SetXP(int value)
     {
         allData.SetXP(value);
-        SaveData();
     }
     public static int GetXP()
     {
         return allData.GetXP();
     }
-    public static void AddXP(int value)
-    {
-        allData.AddXP(value);
-        SaveData();
-    }
+
     public static void SetMaxXP(int Level)
     {
         allData.SetMaxXP(Level);
+        SaveData();
+    }
+    public static void AddMaxMP(int value)
+    {
+        allData.AddMaxMP(value);
         SaveData();
     }
     public static int GetCoin()
@@ -127,6 +138,38 @@ public static class DataPlayer
     public static void AddCoin(int value)
     {
         allData.AddCoin(value);
+    }
+    public static void SubCoin(int value)
+    {
+        allData.SubCoin(value);
+    }
+    public static int GetDamage1()
+    {
+        return allData.GetDamage1();
+    }
+    public static void SetDamage1(int value)
+    {
+        allData.SetDamage1(value);
+        SaveData();
+    }
+    public static void AddDamage1(int Level)
+    {
+        allData.AddDamage1(Level);
+        SaveData();
+    }
+
+    public static int GetDamage2()
+    {
+        return allData.GetDamage2();
+    }
+    public static void SetDamage2(int value)
+    {
+        allData.SetDamage2(value);
+        SaveData();
+    }
+    public static void AddDamage2(int Level)
+    {
+        allData.AddDamage2(Level);
         SaveData();
     }
 
@@ -147,14 +190,52 @@ public static class DataPlayer
     public static void AddDiamond(int value)
     {
         allData.AddDiamond(value);
+    }
+ 
+    public static bool GetIsPlusDamage1()
+    {
+        return allData.GetIsPlusDamage1();
+    }
+    public static void SetIplusDamage1(bool value)
+    {
+        allData.SetIplusDamage1(value);
         SaveData();
     }
-  
+
+    public static bool GetIsPlusDamage2()
+    {
+        return allData.GetIsPlusDamage2();
+    }
+
+    public static void ReceiveBuffDamage1ToSkill(int value)
+    {
+        allData.ReceiveBuffDamage1ToSkill(value);
+    }
+    public static void ReceiveBuffDamage2ToSkill(int value)
+    {
+        allData.ReceiveBuffDamage2ToSkill(value);
+    }
+    public static void SetIplusDamage2(bool value)
+    {
+        allData.SetIplusDamage2(value);
+        SaveData();
+    }
+
+    public static bool CheckEnoughtCoin(int value)
+    {
+        return allData.CheckEnoughtCoin(value);
+    }
+
 }
 public class AllData
 {
     public List<int> WeponList;
 
+    public bool IsPlusDamage1;
+    public bool IsPlusDamage2;
+
+    public int damage1;
+    public int damage2;
 
     public int XP;
     public int MaxXP;
@@ -180,7 +261,61 @@ public class AllData
 
         WeponList.Add(id);
     }
+    #region Damage
+    public bool GetIsPlusDamage1()
+    {
+        return IsPlusDamage1;
+    }
+    public void SetIplusDamage1(bool value)
+    {
+        IsPlusDamage1 = value;
+    }
 
+    public bool GetIsPlusDamage2()
+    {
+        return IsPlusDamage2;
+    }
+    public void SetIplusDamage2(bool value)
+    {
+        IsPlusDamage2 = value;
+    }
+
+    public int GetDamage1()
+    {
+        return damage1;
+    }
+    public void SetDamage1(int value)
+    {
+        damage1 = value;
+    }
+    public void AddDamage1(int level)
+    {
+        damage1 += (level * level * level);
+    }
+
+
+    public int GetDamage2()
+    {
+        return damage2;
+    }
+    public void SetDamage2(int value)
+    {
+        damage2 = value;
+    }
+    public void AddDamage2(int level)
+    {
+        damage2 += (level * level * level);
+    }
+
+    public void ReceiveBuffDamage1ToSkill(int value)
+    {
+        damage1 = value;
+    }
+    public void ReceiveBuffDamage2ToSkill(int value)
+    {
+        damage2 = value;
+    }
+    #endregion
 
     public int GetXP()
     {
@@ -194,13 +329,17 @@ public class AllData
     {
         XP += value;
     }
+    public void AddMaxMP(int value)
+    {
+        MaxMP += value;
+    }
     public int GetMaxXP()
     {
         return MaxXP;
     }
     public void SetMaxXP(int Level)
     {
-        MaxXP = (Level*Level) * 1000;
+        MaxXP = (Level * Level) * 1000;
     }
 
     public int GetHP()
@@ -222,6 +361,10 @@ public class AllData
     public void TakeHP(int value)
     {
         HP -= value;
+        if(HP <= 0)
+        {
+            HP = 0;
+        }
     }
     public void AddMaxHP(int value)
     {
@@ -273,5 +416,15 @@ public class AllData
     public void AddLevel(int value)
     {
         Level += value;
+    }
+
+
+    public void SubCoin(int value)
+    {
+        coin -= value;
+    }
+    public bool CheckEnoughtCoin(int value)
+    {
+        return coin > value;
     }
 }

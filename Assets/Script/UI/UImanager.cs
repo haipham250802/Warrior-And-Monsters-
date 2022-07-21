@@ -16,17 +16,10 @@ public class UImanager : MonoBehaviour
     public Slider sliderMP;
 
     public GameObject DeadGamePanel;
-    public Player m_player;
-
-    private int NumGoldStart;
-    private int NumDiamondStart;
-
-    public int NumDiamondStart1 { get => NumDiamondStart; set => NumDiamondStart = value; }
-    public int NumGoldStart1 { get => NumGoldStart; set => NumGoldStart = value; }
-
     void Start()
     {
         DeadGamePanel.SetActive(false);
+       
     }
     private void Update()
     {
@@ -49,8 +42,9 @@ public class UImanager : MonoBehaviour
 
         sliderMP.maxValue = DataPlayer.GetMaxMP();
         sliderMP.value = DataPlayer.GetMP();
-    }
 
+    }
+ 
     public void ShowDeadGame()
     {
         DeadGamePanel.SetActive(true);

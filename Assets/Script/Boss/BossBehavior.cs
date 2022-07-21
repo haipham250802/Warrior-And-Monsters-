@@ -35,7 +35,7 @@ public class BossBehavior : MonoBehaviour
     public GameObject ItemsCoin;
     public GameObject ItemsDiamond;
     public GameObject ItemsExp;
-
+    public GameObject Meteorite;
     public bool IsAttack { get => isAttack; set => isAttack = value; }
     public int MinXP { get => minXP; set => minXP = value; }
     public int MaxXP { get => maxXP; set => maxXP = value; }
@@ -56,13 +56,21 @@ public class BossBehavior : MonoBehaviour
     private void Update()
     {
         FollowPlayer();
+        if(BossID ==1)
+        {
+            AttackId1();
+        }
+        if(BossID == 2)
+        {
+            AttackId2();
+        }
     }
     public void TakeHit(float damage)
     {
         hitPoint -= damage;
         if (hitPoint <= 0)
         {
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 15; i++)
             {
                 Instantiate(ItemsCoin, transform.position + offset, Quaternion.identity);
                 Instantiate(ItemsDiamond, transform.position, Quaternion.identity);
@@ -107,6 +115,18 @@ public class BossBehavior : MonoBehaviour
                     anim.SetBool(nameRunning, false);
                 }
             }
+           
+        }
+        else
+        {
+            anim.SetBool(nameAttack, false);
+            anim.SetBool(nameRunning, false);
+        }
+    }
+    void AttackId1()
+    {
+        if (!m_player.IsGameOver)
+        {
             Collider2D col2 = Physics2D.OverlapCircle(transform.position, range / 3, playerMask);
             if (col2)
             {
@@ -122,6 +142,7 @@ public class BossBehavior : MonoBehaviour
                     CurTimeAttack = TimeAttack;
                 }
             }
+
             else if (col2 == null)
             {
                 anim.SetBool(nameAttack, false);
@@ -133,7 +154,34 @@ public class BossBehavior : MonoBehaviour
             anim.SetBool(nameRunning, false);
         }
     }
-
+    void AttackId2()
+    {
+        if (!FindObjectOfType<Player>().IsGameOver)
+        {
+            Collider2D col = Physics2D.OverlapCircle(transform.position, range, playerMask);
+            if (col)
+            {
+                if (CurTimeAttack > 0)
+                {
+                    CurTimeAttack -= Time.deltaTime;
+                    Debug.LogWarning("da cham");
+                    Debug.LogWarning("da ban");
+                }
+                else if (CurTimeAttack <= 0)
+                {
+                    isAttack = true;
+                    Instantiate(Meteorite, new Vector3(m_player.transform.position.x, 26, 0), Quaternion.identity);
+                    CurTimeAttack = TimeAttack;
+                }
+            }
+        }
+        else
+        {
+            anim.SetBool(nameAttack, false);
+            anim.SetBool(nameRunning, false);
+            isAttack = false;
+        }
+    }
     void Flip()
     {
         IsFacingRight = !IsFacingRight;

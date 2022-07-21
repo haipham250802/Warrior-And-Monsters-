@@ -12,7 +12,8 @@ public class UIShopElement : MonoBehaviour
     public Button PurchaseBtn;
     public GameObject Coin;
 
-
+    public GameObject Dialog1;
+    public GameObject Dialog2;
     private void Awake()
     {
         PurchaseBtn.onClick.AddListener(OnPurchase);
@@ -21,7 +22,7 @@ public class UIShopElement : MonoBehaviour
     public void SetData(int id)
     {
         this.id = id;
-        cost = id * 200;
+        cost = id * 500;
 
         UpdateView();
     }
@@ -45,8 +46,17 @@ public class UIShopElement : MonoBehaviour
     }
     private void OnPurchase()
     {
-        DataPlayer.AddWepon(id);
-
+        var isPurchase = DataPlayer.CheckEnoughtCoin(cost);
+        if (isPurchase)
+        {
+            Dialog2.SetActive(true);
+            DataPlayer.AddWepon(id);
+            DataPlayer.SubCoin(cost);
+        }
+        else
+        {
+            Dialog1.SetActive(true);
+        }    
         UpdateView();
     }
 }

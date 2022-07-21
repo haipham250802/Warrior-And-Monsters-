@@ -4,30 +4,84 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 public class UImanagerLobby : MonoBehaviour
-{/*
-    public Text MaxHP;
-    public Text MaxMP;
-    public Text NumGold;
-    public Text NumDiamond;
-    */
+{
+    public Text NumHealthTxt;
+    public Text NumMPTxt;
+    public Text NumXPTxt;
+    public Text NumGoldTxt;
+    public Text NumDiamondTxt;
+    public Text NumLevelTxt;
+    public Text NumAttack1Txt;
+    public Text NumAttack2Txt;
 
-    Player m_Player;
-    UImanager m_UI;
-    // Start is called before the first frame update
-    void Start()
+    public Slider SliderExp;
+
+    bool isCanPlusDamageWepon1;
+    bool isCanPlusDamageWepon2;
+
+    WeponId1 m_wp1;
+    WeponId2 m_wp2;
+    private void Awake()
     {
-        m_Player = FindObjectOfType<Player>();
-        m_UI = FindObjectOfType<UImanager>();
+        m_wp1 = FindObjectOfType<WeponId1>();
+        m_wp2 = FindObjectOfType<WeponId2>();
+    }
+    private void Start()
+    {
+        
+    }
+    private void Update()
+    {
+        UpdateView();
+
+        Debug.Log($"damage1 = { DataPlayer.GetDamage1()} , Damage2 = {DataPlayer.GetDamage2()}");
+
+    }
+    public void UpdateView()
+    {
+        NumHealthTxt.text = DataPlayer.GetMaxHP().ToString();
+        NumMPTxt.text = DataPlayer.GetMaxMP().ToString();
+        NumXPTxt.text = DataPlayer.GetXP() + " / " + DataPlayer.GetMaxXP().ToString();
+
+        NumGoldTxt.text = DataPlayer.GetCoin().ToString();
+        NumDiamondTxt.text = DataPlayer.GetDiamond().ToString();
+        NumLevelTxt.text = "LEVEL " + DataPlayer.GetLevel().ToString();
+
+        SliderExp.maxValue = DataPlayer.GetMaxXP();
+        SliderExp.value = DataPlayer.GetXP();
+        
+        UpdateDamage();
+    }
+    public void UpdateDamage()
+    {
+        if (DataPlayer.IsOwnWeponWithId(1) && DataPlayer.GetIsPlusDamage1() == false && m_wp1)
+        {
+            int damage1 = DataPlayer.GetDamage1();
+            damage1 += m_wp1.Damage1;
+            DataPlayer.SetDamage1(damage1);
+            isCanPlusDamageWepon1 = true;
+            DataPlayer.SetIplusDamage1(isCanPlusDamageWepon1);
+        }
+        if (DataPlayer.IsOwnWeponWithId(2) && DataPlayer.GetIsPlusDamage2() == false && m_wp2)
+        {
+            int damage2 = DataPlayer.GetDamage2();
+            damage2 += m_wp2.Damage2;
+            DataPlayer.SetDamage2(damage2);
+            isCanPlusDamageWepon2 = true;
+            DataPlayer.SetIplusDamage2(isCanPlusDamageWepon2);
+
+        }
+        NumAttack1Txt.text = DataPlayer.GetDamage1().ToString();
+        NumAttack2Txt.text = DataPlayer.GetDamage2().ToString();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-       /* MaxHP.text = m_Player.MaxHealth.ToString();
-        MaxMP.text = m_Player.MaxMP.ToString();*/
-    }
     public void LoadSecene()
     {
+        int maxhp = DataPlayer.GetMaxHP();
+        int maxmp = DataPlayer.GetMaxMP();
+
+        DataPlayer.SetHP(maxhp);
+        DataPlayer.SetMP(maxmp);
         SceneManager.LoadScene(1);
     }
 }

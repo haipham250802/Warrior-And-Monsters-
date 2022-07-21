@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class WeponId2 : MonoBehaviour
 {
-    private float damage2;
+    private int damage2;
 
-    public float Damage2 { get => damage2; set => damage2 = value; }
+    public int Damage2 { get => damage2; set => damage2 = value; }
 
     private void Awake()
     {

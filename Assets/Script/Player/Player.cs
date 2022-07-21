@@ -28,13 +28,9 @@ public class Player : MonoBehaviour
     [Header("Parameters")]
     public float Speed;
     public float JumpForce;
-   
-    [SerializeField]
-    private float maxMP;
-    [SerializeField]
-    private float damage1;
-    [SerializeField]
-    private float damage2;
+
+    private int damage1;
+    private int damage2;
     [Header("Object")]
     public GameObject SKills;
 
@@ -44,9 +40,9 @@ public class Player : MonoBehaviour
     private int ClickCount03 = 0;
     private int coin;
     private int diamond;
-    private float CurDamage1;
-    private float CurDamage2;
-    
+    private int CurDamage1;
+    private int CurDamage2;
+
 
     private bool isCanUseSkill00;
     private bool isCanUseSkill01;
@@ -60,7 +56,7 @@ public class Player : MonoBehaviour
     private float MoveSpeed;
     private bool isDamagePlus1;
     private bool isDamagePlus2;
-
+    private bool isLevelUp;
 
     public bool IsGameOver { get => isGameOver; private set => isGameOver = value; }
     public int ClickCount001 { get => ClickCount00; set => ClickCount00 = value; }
@@ -72,19 +68,19 @@ public class Player : MonoBehaviour
     public bool IsCanUseSkill02 { get => isCanUseSkill02; set => isCanUseSkill02 = value; }
     public bool IsCanUseSkill03 { get => isCanUseSkill03; set => isCanUseSkill03 = value; }
     public bool IsFacingRight { get => isFacingRight; set => isFacingRight = value; }
-    public float Damage1 { get => damage1; set => damage1 = value; }
-    public float Damage2 { get => damage2; set => damage2 = value; }
+    public int Damage1 { get => damage1; set => damage1 = value; }
+    public int Damage2 { get => damage2; set => damage2 = value; }
 
-    public float MaxMP { get => maxMP; set => maxMP = value; }
+
     public float MoveSpeed1 { get => MoveSpeed; set => MoveSpeed = value; }
-    public float CurDamage11 { get => CurDamage1; set => CurDamage1 = value; }
-    public float CurDamage21 { get => CurDamage2; set => CurDamage2 = value; }
+    public int CurDamage11 { get => CurDamage1; set => CurDamage1 = value; }
+    public int CurDamage21 { get => CurDamage2; set => CurDamage2 = value; }
+    public bool IsLevelUp { get => isLevelUp; set => isLevelUp = value; }
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         anm = GetComponent<Animator>();
-
 
         m_TimeCountDown = FindObjectOfType<TimeCountDownSkill>();
         m_UImanager = FindObjectOfType<UImanager>();
@@ -92,11 +88,15 @@ public class Player : MonoBehaviour
         m_Wp2 = FindObjectOfType<WeponId2>();
         m_Boss = FindObjectOfType<BossBehavior>();
 
+        CurDamage1 = DataPlayer.GetDamage1();
+        CurDamage2 = DataPlayer.GetDamage2();
+
         isFacingRight = true;
-        coin = m_UImanager.NumGoldStart1;
-        diamond = m_UImanager.NumDiamondStart1;
-        CurDamage1 = damage1;
-        CurDamage2 = damage2;
+
+        int maxhp = DataPlayer.GetMaxHP();
+        int maxmp = DataPlayer.GetMaxMP();
+        DataPlayer.SetHP(maxhp);
+        DataPlayer.SetMP(maxmp);
     }
 
     void Update()
@@ -105,20 +105,18 @@ public class Player : MonoBehaviour
         GameOver();
         DamagePlusToWepon();
         LevelUp();
+
     }
     void DamagePlusToWepon()
     {
-
         if (DataPlayer.IsOwnWeponWithId(1) && !isDamagePlus1)
         {
-            damage1 += m_Wp1.Damage1;
-            CurDamage1 = damage1;
+            CurDamage1 = DataPlayer.GetDamage1();
             isDamagePlus1 = true;
         }
         if (DataPlayer.IsOwnWeponWithId(2) && !isDamagePlus2)
         {
-            damage2 += m_Wp2.Damage2;
-            CurDamage2 = damage2;
+            CurDamage2 = DataPlayer.GetDamage2();
             isDamagePlus2 = true;
         }
     }
@@ -221,7 +219,7 @@ public class Player : MonoBehaviour
             int rand = Random.Range(20, 30);
             DataPlayer.AddDiamond(rand);
         }
-        if(collision.gameObject.CompareTag("XP"))
+        if (collision.gameObject.CompareTag("XP"))
         {
             int rand = Random.Range(m_Boss.MinXP, m_Boss.MaxXP);
             DataPlayer.AddXP(rand);
@@ -231,15 +229,31 @@ public class Player : MonoBehaviour
     {
         int MaxExp = DataPlayer.GetMaxXP();
         int CurExp = DataPlayer.GetXP();
-        if(CurExp >= MaxExp)
+        if (CurExp >= MaxExp)
         {
+            isLevelUp = true;
             DataPlayer.Addlevel(1);
-            DataPlayer.SetXP(0);
+
             int curLevel = DataPlayer.GetLevel();
+
+            DataPlayer.AddDamage1(curLevel);
+            DataPlayer.AddDamage2(curLevel);
+
+            CurDamage2 = DataPlayer.GetDamage2();
+            CurDamage1 = DataPlayer.GetDamage1();
+
             DataPlayer.SetMaxXP(curLevel);
+
             DataPlayer.AddMaxHP(curLevel * 50);
             int Hp = DataPlayer.GetMaxHP();
             DataPlayer.SetHP(Hp);
+
+            DataPlayer.AddMaxMP(curLevel * 50);
+            int Mp = DataPlayer.GetMaxMP();
+            DataPlayer.SetMP(Mp);
+
+            DataPlayer.SetXP(0);
+
         }
     }
     public void Sword_Attack()
