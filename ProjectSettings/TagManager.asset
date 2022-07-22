@@ -13,6 +13,7 @@ TagManager:
   - Coin
   - Diamond
   - XP
+  - Boss
   layers:
   - Default
   - TransparentFX

@@ -200,6 +200,7 @@ GameObject:
   - component: {fileID: 9132439040700513751}
   - component: {fileID: 9132439040700513748}
   - component: {fileID: 9132439040700513769}
+  - component: {fileID: 1987961677}
   m_Layer: 7
   m_Name: Player
   m_TagString: Player
@@ -349,8 +350,21 @@ MonoBehaviour:
   anm: {fileID: 9132439040700513748}
   Speed: 5
   JumpForce: 350
-  maxHealth: 200
-  maxMP: 200
-  damage1: 10
-  damage2: 40
   SKills: {fileID: 0}
+--- !u!114 &1987961677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9132439040700513747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cca22d1e7ec76b842b0fd30923a32433, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  swordAttack: {fileID: 8300000, guid: 5e3e95d96c0428d408a67ce1ba09982a, type: 3}
+  ShieldAttack: {fileID: 8300000, guid: c8d4dd2124dc32c4db5675fc40e3aaea, type: 3}
+  Buff2: {fileID: 8300000, guid: 9e9f1a8480ff434428f3ec03e679d023, type: 3}
+  Buff1: {fileID: 8300000, guid: acd7ba996f90f8b499665373311f7b69, type: 3}

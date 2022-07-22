@@ -26,10 +26,6 @@ public class UImanagerLobby : MonoBehaviour
         m_wp1 = FindObjectOfType<WeponId1>();
         m_wp2 = FindObjectOfType<WeponId2>();
     }
-    private void Start()
-    {
-        
-    }
     private void Update()
     {
         UpdateView();
@@ -73,15 +69,5 @@ public class UImanagerLobby : MonoBehaviour
         }
         NumAttack1Txt.text = DataPlayer.GetDamage1().ToString();
         NumAttack2Txt.text = DataPlayer.GetDamage2().ToString();
-    }
-
-    public void LoadSecene()
-    {
-        int maxhp = DataPlayer.GetMaxHP();
-        int maxmp = DataPlayer.GetMaxMP();
-
-        DataPlayer.SetHP(maxhp);
-        DataPlayer.SetMP(maxmp);
-        SceneManager.LoadScene(1);
     }
 }

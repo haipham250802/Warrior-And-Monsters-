@@ -36,6 +36,7 @@ public class EnemyBehavior : MonoBehaviour
 
     public GameObject Bullet;
     public GameObject PosBullet;
+
     public bool IsAttack { get => isAttack; set => isAttack = value; }
     public int ID { get => iD; set => iD = value; }
 

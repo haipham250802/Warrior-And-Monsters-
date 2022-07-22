@@ -19,8 +19,6 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     private TimeCountDownSkill m_TimeCountDown;
     private UImanager m_UImanager;
-    private WeponId1 m_Wp1;
-    private WeponId2 m_Wp2;
     private BossBehavior m_Boss;
     [Header("Animator")]
     public Animator anm;
@@ -33,13 +31,12 @@ public class Player : MonoBehaviour
     private int damage2;
     [Header("Object")]
     public GameObject SKills;
+    public GameObject DeadGameUI;
 
     private int ClickCount00 = 0;
     private int ClickCount01 = 0;
     private int ClickCount02 = 0;
     private int ClickCount03 = 0;
-    private int coin;
-    private int diamond;
     private int CurDamage1;
     private int CurDamage2;
 
@@ -84,8 +81,6 @@ public class Player : MonoBehaviour
 
         m_TimeCountDown = FindObjectOfType<TimeCountDownSkill>();
         m_UImanager = FindObjectOfType<UImanager>();
-        m_Wp1 = FindObjectOfType<WeponId1>();
-        m_Wp2 = FindObjectOfType<WeponId2>();
         m_Boss = FindObjectOfType<BossBehavior>();
 
         CurDamage1 = DataPlayer.GetDamage1();
@@ -132,55 +127,58 @@ public class Player : MonoBehaviour
         if (DataPlayer.GetHP() <= 0)
         {
             isGameOver = true;
-            StopAni();
+            SKills.SetActive(false);
             anm.SetBool("isDead", true);
             m_UImanager.ShowDeadGame();
         }
-    }
-    void StopAni()
-    {
-        Speed = 0;
-        JumpForce = 0;
-        anm.SetFloat("isRun", -1);
-        SKills.SetActive(false);
-        anm.SetBool("isJump", false);
+        else
+        {
+            isGameOver = false;
+            anm.SetBool("isDead", false);
+            SKills.SetActive(true);
+        }
     }
     private void FixedUpdate()
     {
-        MoveSpeed = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector2(Speed * MoveSpeed, rb.velocity.y);
-        anm.SetFloat("isRun", Mathf.Abs(MoveSpeed));
-        if (MoveSpeed > 0 && !isFacingRight)
+        if (!isGameOver)
         {
-            Flip();
-        }
-        else if (MoveSpeed < 0 && isFacingRight)
-        {
-            Flip();
-        }
+            MoveSpeed = Input.GetAxis("Horizontal");
+            rb.velocity = new Vector2(Speed * MoveSpeed, rb.velocity.y);
+            anm.SetFloat("isRun", Mathf.Abs(MoveSpeed));
+            if (MoveSpeed > 0 && !isFacingRight)
+            {
+                Flip();
+            }
+            else if (MoveSpeed < 0 && isFacingRight)
+            {
+                Flip();
+            }
 
-        if (Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            Jump();
+            if (Input.GetKeyDown(KeyCode.UpArrow))
+            {
+                Jump();
+            }
+            Fall();
         }
-        Fall();
     }
     void Jump()
     {
-        if (isGrounded)
+        if (!isGameOver)
         {
-            isGrounded = false;
-            rb.velocity = new Vector2(rb.velocity.x, JumpForce * Time.deltaTime);
-            anm.SetBool("isJump", true);
-            IsCanDoubleJump = true;
+            if (isGrounded)
+            {
+                isGrounded = false;
+                rb.velocity = new Vector2(rb.velocity.x, JumpForce * Time.deltaTime);
+                anm.SetBool("isJump", true);
+                IsCanDoubleJump = true;
+            }
+            if (rb.velocity.y <= 0 && IsCanDoubleJump)
+            {
+                rb.velocity = new Vector2(rb.velocity.x, JumpForce * Time.deltaTime);
+                anm.SetBool("isJump", true);
+                IsCanDoubleJump = false;
+            }
         }
-        if (rb.velocity.y <= 0 && IsCanDoubleJump)
-        {
-            rb.velocity = new Vector2(rb.velocity.x, JumpForce * Time.deltaTime);
-            anm.SetBool("isJump", true);
-            IsCanDoubleJump = false;
-        }
-
     }
     void Fall()
     {
@@ -308,6 +306,34 @@ public class Player : MonoBehaviour
         if (DataPlayer.GetMP() < 20)
         {
             ClickCount03 = 0;
+        }
+    }
+    public void RevivalGold()
+    {
+        if (DataPlayer.GetCoin() >= 200)
+        {
+            DataPlayer.SubCoin(200);
+
+            int maxhp = DataPlayer.GetMaxHP();
+            int maxmp = DataPlayer.GetMaxMP();
+            DataPlayer.SetHP(maxhp);
+            DataPlayer.SetMP(maxmp);
+
+            DeadGameUI.SetActive(false);
+        }
+    }
+    public void RevivalDiamond()
+    {
+        if (DataPlayer.GetDiamond() >= 50)
+        {
+            DataPlayer.SubDiamond(50);
+
+            int maxhp = DataPlayer.GetMaxHP();
+            int maxmp = DataPlayer.GetMaxMP();
+            DataPlayer.SetHP(maxhp);
+            DataPlayer.SetMP(maxmp);
+
+            DeadGameUI.SetActive(false);
         }
     }
     public void JumpBtn()

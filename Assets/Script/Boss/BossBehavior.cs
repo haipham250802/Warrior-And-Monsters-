@@ -163,12 +163,14 @@ public class BossBehavior : MonoBehaviour
             {
                 if (CurTimeAttack > 0)
                 {
+                    anim.SetBool(nameAttack, false);
                     CurTimeAttack -= Time.deltaTime;
                     Debug.LogWarning("da cham");
                     Debug.LogWarning("da ban");
                 }
                 else if (CurTimeAttack <= 0)
                 {
+                    anim.SetBool(nameAttack, true);
                     isAttack = true;
                     Instantiate(Meteorite, new Vector3(m_player.transform.position.x, 26, 0), Quaternion.identity);
                     CurTimeAttack = TimeAttack;

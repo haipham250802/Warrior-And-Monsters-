@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-
 public static class DataPlayer
 {
     private const string ALL_DATA = "all_data";
@@ -30,11 +29,14 @@ public static class DataPlayer
                 diamond = 300,
 
                 Level = 1,
+                IdMap = 2,
 
                 damage1 = 11,
                 damage2 = 41,
 
+                volumeSound = 1f,
                 WeponList = new List<int> { },
+                LevelList = new List<int> { 1 },
             };
             SaveData();
         }
@@ -44,6 +46,7 @@ public static class DataPlayer
         var data = JsonUtility.ToJson(allData);
         PlayerPrefs.SetString(ALL_DATA, data);
     }
+    #region Wepon
     public static bool IsOwnWeponWithId(int id)
     {
         return allData.IsOwnWeponWithId(id);
@@ -54,7 +57,8 @@ public static class DataPlayer
 
         SaveData();
     }
-
+    #endregion
+    #region HP
     public static int GetHP()
     {
         return allData.GetHP();
@@ -81,6 +85,8 @@ public static class DataPlayer
     {
         allData.AddMaxHP(value);
     }
+    #endregion
+    #region MP
     public static int GetMP()
     {
         return allData.GetMP();
@@ -99,6 +105,13 @@ public static class DataPlayer
         allData.SetMP(value);
         SaveData();
     }
+    public static void AddMaxMP(int value)
+    {
+        allData.AddMaxMP(value);
+        SaveData();
+    }
+    #endregion
+    #region XP
     public static void AddXP(int value)
     {
         allData.AddXP(value);
@@ -126,11 +139,8 @@ public static class DataPlayer
         allData.SetMaxXP(Level);
         SaveData();
     }
-    public static void AddMaxMP(int value)
-    {
-        allData.AddMaxMP(value);
-        SaveData();
-    }
+    #endregion
+    #region Money & LV
     public static int GetCoin()
     {
         return allData.GetCoin();
@@ -143,6 +153,35 @@ public static class DataPlayer
     {
         allData.SubCoin(value);
     }
+
+    public static void Addlevel(int value)
+    {
+        allData.AddLevel(value);
+        SaveData();
+    }
+    public static int GetLevel()
+    {
+        return allData.GetLevel();
+    }
+
+    public static int GetDiamond()
+    {
+        return allData.GetDiamon();
+    }
+    public static void AddDiamond(int value)
+    {
+        allData.AddDiamond(value);
+    }
+    public static bool CheckEnoughtCoin(int value)
+    {
+        return allData.CheckEnoughtCoin(value);
+    }
+    public static void SubDiamond(int value)
+    {
+        allData.SubDiamond(value);
+    }
+    #endregion
+    #region Damage
     public static int GetDamage1()
     {
         return allData.GetDamage1();
@@ -173,25 +212,7 @@ public static class DataPlayer
         SaveData();
     }
 
-    public static void Addlevel(int value)
-    {
-        allData.AddLevel(value);
-        SaveData();
-    }
-    public static int GetLevel()
-    {
-        return allData.GetLevel();
-    }
 
-    public static int GetDiamond()
-    {
-        return allData.GetDiamon();
-    }
-    public static void AddDiamond(int value)
-    {
-        allData.AddDiamond(value);
-    }
- 
     public static bool GetIsPlusDamage1()
     {
         return allData.GetIsPlusDamage1();
@@ -221,15 +242,33 @@ public static class DataPlayer
         SaveData();
     }
 
-    public static bool CheckEnoughtCoin(int value)
+    #endregion
+    public static bool IsOwnLvWithId(int id)
     {
-        return allData.CheckEnoughtCoin(value);
+        return allData.IsOwnLvWithId(id);
     }
+    public static void AddLvWithId(int id)
+    {
+        allData.AddLvWithId(id);
+        SaveData();
+    }
+
+    public static void SetVolume(float value)
+    {
+        allData.SetVolume(value);
+        SaveData();
+    }
+    public static float GetVolume()
+    {
+        return allData.GetVolume();
+    }
+
 
 }
 public class AllData
 {
     public List<int> WeponList;
+    public List<int> LevelList;
 
     public bool IsPlusDamage1;
     public bool IsPlusDamage2;
@@ -251,6 +290,28 @@ public class AllData
     public int diamond;
 
     public int Level;
+    public int IdMap;
+
+    public float volumeSound;
+
+    public bool IsOwnLvWithId(int id)
+    {
+        return LevelList.Contains(id);
+    }
+    public void AddLvWithId(int id)
+    {
+        if (IsOwnLvWithId(id)) return;
+        LevelList.Add(id);
+    }
+    public void SetVolume(float value)
+    {
+        volumeSound = value;
+    }
+    public float GetVolume()
+    {
+        return volumeSound;
+    }
+    #region Wepon
     public bool IsOwnWeponWithId(int id)
     {
         return WeponList.Contains(id);
@@ -261,6 +322,7 @@ public class AllData
 
         WeponList.Add(id);
     }
+    #endregion
     #region Damage
     public bool GetIsPlusDamage1()
     {
@@ -316,7 +378,7 @@ public class AllData
         damage2 = value;
     }
     #endregion
-
+    #region XP
     public int GetXP()
     {
         return XP;
@@ -341,7 +403,8 @@ public class AllData
     {
         MaxXP = (Level * Level) * 1000;
     }
-
+    #endregion
+    #region HP
     public int GetHP()
     {
         return HP;
@@ -361,7 +424,7 @@ public class AllData
     public void TakeHP(int value)
     {
         HP -= value;
-        if(HP <= 0)
+        if (HP <= 0)
         {
             HP = 0;
         }
@@ -370,7 +433,8 @@ public class AllData
     {
         MaxHP += value;
     }
-
+    #endregion
+    #region MP
     public int GetMP()
     {
         return MP;
@@ -391,6 +455,8 @@ public class AllData
     {
         MP -= value;
     }
+    #endregion
+    #region Money & LV
     public int GetDiamon()
     {
         return diamond;
@@ -399,7 +465,10 @@ public class AllData
     {
         diamond += value;
     }
-
+    public void SubDiamond(int value)
+    {
+        diamond -= value;
+    }
     public int GetCoin()
     {
         return coin;
@@ -427,4 +496,5 @@ public class AllData
     {
         return coin > value;
     }
+    #endregion
 }

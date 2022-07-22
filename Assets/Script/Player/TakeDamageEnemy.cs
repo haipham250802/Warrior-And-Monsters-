@@ -5,15 +5,16 @@ using UnityEngine.UI;
 
 public class TakeDamageEnemy : MonoBehaviour
 {
+    public int NumEnemy;
     Player m_Player;
-    public FloatingPoint m_floatingPoint;
+    EnemyElement m_enemyElement;
 
+    public FloatingPoint m_floatingPoint;
 
     private void Start()
     {
         m_Player = FindObjectOfType<Player>();
-        
-       
+        m_enemyElement = FindObjectOfType<EnemyElement>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -35,7 +36,7 @@ public class TakeDamageEnemy : MonoBehaviour
                 m_Player.IsCanUseSkill01 = false;
             }
         }
-        if(boss)
+        if(boss && m_enemyElement.GetSizeEnemyBehaviors() == 0)
         {
             if (m_Player.IsCanUseSkill00)
             {
