@@ -13,6 +13,7 @@ public class UImanagerLobby : MonoBehaviour
     public Text NumLevelTxt;
     public Text NumAttack1Txt;
     public Text NumAttack2Txt;
+    
 
     public Slider SliderExp;
 
@@ -25,6 +26,8 @@ public class UImanagerLobby : MonoBehaviour
     {
         m_wp1 = FindObjectOfType<WeponId1>();
         m_wp2 = FindObjectOfType<WeponId2>();
+
+
     }
     private void Update()
     {

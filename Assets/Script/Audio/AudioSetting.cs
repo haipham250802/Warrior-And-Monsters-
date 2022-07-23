@@ -12,7 +12,10 @@ public class AudioSetting : MonoBehaviour
     {
         VolumeSlider.value = DataPlayer.GetVolume();
         audioSource.volume = VolumeSlider.value;
-
+    }
+    private void Start()
+    {
+        VolumeSlider.value = DataPlayer.GetVolume();
     }
     // Update is called once per frame
     void Update()

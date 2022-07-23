@@ -28,4 +28,8 @@ public class LoaderSceneManager : MonoBehaviour
     {
         Application.Quit();
     }
+    public void ResetGame()
+    {
+        PlayerPrefs.DeleteAll();
+    }
 }
