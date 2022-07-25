@@ -26,6 +26,7 @@ public class Player : MonoBehaviour
     [Header("Parameters")]
     public float Speed;
     public float JumpForce;
+    public Vector3 StartPosition;
 
     private int damage1;
     private int damage2;
@@ -54,6 +55,9 @@ public class Player : MonoBehaviour
     private bool isDamagePlus1;
     private bool isDamagePlus2;
     private bool isLevelUp;
+
+    private bool isMovementRight;
+    private bool isMovementLeft;
 
     public bool IsGameOver { get => isGameOver; private set => isGameOver = value; }
     public int ClickCount001 { get => ClickCount00; set => ClickCount00 = value; }
@@ -87,6 +91,8 @@ public class Player : MonoBehaviour
         CurDamage2 = DataPlayer.GetDamage2();
 
         isFacingRight = true;
+        isMovementLeft = false;
+        isMovementRight = false;
 
         int maxhp = DataPlayer.GetMaxHP();
         int maxmp = DataPlayer.GetMaxMP();
@@ -100,7 +106,7 @@ public class Player : MonoBehaviour
         GameOver();
         DamagePlusToWepon();
         LevelUp();
-
+      //  MovementMobile();
     }
     void DamagePlusToWepon()
     {
@@ -138,28 +144,71 @@ public class Player : MonoBehaviour
             SKills.SetActive(true);
         }
     }
-    private void FixedUpdate()
-    {
-        if (!isGameOver)
-        {
-            MoveSpeed = Input.GetAxis("Horizontal");
-            rb.velocity = new Vector2(Speed * MoveSpeed, rb.velocity.y);
-            anm.SetFloat("isRun", Mathf.Abs(MoveSpeed));
-            if (MoveSpeed > 0 && !isFacingRight)
-            {
-                Flip();
-            }
-            else if (MoveSpeed < 0 && isFacingRight)
-            {
-                Flip();
-            }
+      private void FixedUpdate()
+      {
+          if (!isGameOver)
+          {
+              MoveSpeed = Input.GetAxis("Horizontal");
+              rb.velocity = new Vector2(Speed * MoveSpeed * Time.deltaTime, rb.velocity.y);
+              anm.SetFloat("isRun", Mathf.Abs(MoveSpeed));
+              if (MoveSpeed > 0 && !isFacingRight)
+              {
+                  Flip();
+              }
+              else if (MoveSpeed < 0 && isFacingRight)
+              {
+                  Flip();
+              }
 
-            if (Input.GetKeyDown(KeyCode.UpArrow))
+              if (Input.GetKeyDown(KeyCode.UpArrow))
+              {
+                  Jump();
+              }
+              Fall();
+          }
+      }
+    void MovementMobile()
+    {
+        if (isMovementLeft)
+        {
+            Debug.Log("da den1");
+            rb.velocity = new Vector2(-Speed * Time.deltaTime, rb.velocity.y);
+            if (IsFacingRight)
             {
-                Jump();
+                Flip();
             }
-            Fall();
+            anm.SetFloat("isRun", 1f);
         }
+        if (isMovementRight)
+        {
+            Debug.Log("da den2");
+            rb.velocity = new Vector2(Speed * Time.deltaTime, rb.velocity.y);
+            if (!IsFacingRight)
+            {
+                Flip();
+            }
+            anm.SetFloat("isRun", 1f);
+        }
+    }
+    public void JumpBtn()
+    {
+        Jump();
+        Fall();
+    }
+    public void RunLeftBtn()
+    {
+        isMovementLeft = true;
+    }
+    public void RunRightBtn()
+    {
+        isMovementRight = true;
+    }
+    public void StopMovement()
+    {
+        Debug.Log("da thoat");
+        isMovementRight = false;
+        isMovementLeft = false;
+        anm.SetFloat("isRun", 0);
     }
     void Jump()
     {
@@ -222,6 +271,11 @@ public class Player : MonoBehaviour
             int rand = Random.Range(m_Boss.MinXP, m_Boss.MaxXP);
             DataPlayer.AddXP(rand);
         }
+        if(collision.gameObject.CompareTag("Water"))
+        {
+            int hp = 0;
+            DataPlayer.SetHP(hp);
+        }
     }
     void LevelUp()
     {
@@ -234,8 +288,8 @@ public class Player : MonoBehaviour
 
             int curLevel = DataPlayer.GetLevel();
 
-            DataPlayer.AddDamage1(curLevel);
-            DataPlayer.AddDamage2(curLevel);
+            DataPlayer.AddDamage1(CurDamage1,curLevel);
+            DataPlayer.AddDamage2(CurDamage2,curLevel);
 
             CurDamage2 = DataPlayer.GetDamage2();
             CurDamage1 = DataPlayer.GetDamage1();
@@ -251,7 +305,6 @@ public class Player : MonoBehaviour
             DataPlayer.SetMP(Mp);
 
             DataPlayer.SetXP(0);
-
         }
     }
     public void Sword_Attack()
@@ -320,6 +373,7 @@ public class Player : MonoBehaviour
             DataPlayer.SetMP(maxmp);
 
             DeadGameUI.SetActive(false);
+            transform.position = StartPosition;
         }
     }
     public void RevivalDiamond()
@@ -334,12 +388,10 @@ public class Player : MonoBehaviour
             DataPlayer.SetMP(maxmp);
 
             DeadGameUI.SetActive(false);
+            transform.position = StartPosition;
         }
     }
-    public void JumpBtn()
-    {
-        Jump();
-    }
+
     public Animator Getanm()
     {
         return anm;

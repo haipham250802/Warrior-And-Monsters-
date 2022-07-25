@@ -24,6 +24,10 @@ public class PosItemId2 : MonoBehaviour
             WeponItems = Instantiate(prefab, transform.position, Quaternion.identity);
             isHideWepon2 = true;
         }
+        else if(!DataPlayer.IsOwnWeponWithId(2))
+        {
+            Destroy(prefab.gameObject);
+        }
         if (Player.instance && WeponItems)
         {
             WeponItems.transform.position = transform.position;

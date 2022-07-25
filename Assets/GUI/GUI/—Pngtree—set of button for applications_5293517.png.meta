@@ -1,0 +1,708 @@
+fileFormatVersion: 2
+guid: bc777d43c85c43a499be085ef434dcc6
+TextureImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 11
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  vTOnly: 0
+  ignoreMasterTextureLimit: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: 1
+    aniso: 1
+    mipBias: 0
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 100
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 1
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  flipbookRows: 1
+  flipbookColumns: 1
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  ignorePngGamma: 0
+  applyGammaDecoding: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Server
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Windows Store Apps
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014set of button for applications_5293517_0"
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 3233
+        width: 620
+        height: 637
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2a614b5b2ed673b4596489ad4e0fe7f4
+      internalID: -2089583123
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014set of button for applications_5293517_1"
+      rect:
+        serializedVersion: 2
+        x: 936
+        y: 3233
+        width: 620
+        height: 637
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6dd4b7e045c4dc842bb123c9e3ba2b4a
+      internalID: 955329230
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014set of button for applications_5293517_2"
+      rect:
+        serializedVersion: 2
+        x: 1683
+        y: 3233
+        width: 619
+        height: 637
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 716094f5b461f6e4c9b96471abdc4271
+      internalID: -221191562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014set of button for applications_5293517_3"
+      rect:
+        serializedVersion: 2
+        x: 2427
+        y: 3233
+        width: 619
+        height: 637
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c5aa464b99b838448b6199eb9e212a9
+      internalID: -121726967
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014set of button for applications_5293517_4"
+      rect:
+        serializedVersion: 2
+        x: 3161
+        y: 3233
+        width: 621
+        height: 637
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0dc61df7ac8f3794d9834aaa1d3d3507
+      internalID: 1227200402
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014set of button for applications_5293517_5"
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 2491
+        width: 620
+        height: 639
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d18390dc041e0754a877afc0d9bb8469
+      internalID: 2084237246
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014set of button for applications_5293517_6"
+      rect:
+        serializedVersion: 2
+        x: 936
+        y: 2491
+        width: 620
+        height: 639
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fabd8e92fd0857247a3e5fddc66aed8e
+      internalID: 1516876483
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014set of button for applications_5293517_7"
+      rect:
+        serializedVersion: 2
+        x: 1683
+        y: 2491
+        width: 619
+        height: 639
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9c41624450fb1a64b976059ef7992f7e
+      internalID: 1445983632
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014set of button for applications_5293517_8"
+      rect:
+        serializedVersion: 2
+        x: 2427
+        y: 2491
+        width: 619
+        height: 639
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 56bc16f95bf4ff24fad9f7015a28752c
+      internalID: -1582097014
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014set of button for applications_5293517_9"
+      rect:
+        serializedVersion: 2
+        x: 3161
+        y: 2491
+        width: 621
+        height: 639
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 387cfb99d938ff94b8d8f5fef392991d
+      internalID: 1767175962
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014set of button for applications_5293517_10"
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 1747
+        width: 620
+        height: 639
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: cc8bea91ad6c33e408a33cfce0277968
+      internalID: 941927928
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014set of button for applications_5293517_11"
+      rect:
+        serializedVersion: 2
+        x: 936
+        y: 1747
+        width: 620
+        height: 639
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 90fa68cfe3787d841a0ca12e54783828
+      internalID: -209359661
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014set of button for applications_5293517_12"
+      rect:
+        serializedVersion: 2
+        x: 1683
+        y: 1747
+        width: 619
+        height: 639
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59ade7e5e0fcb91449c60607629b4ca3
+      internalID: -809971075
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014set of button for applications_5293517_13"
+      rect:
+        serializedVersion: 2
+        x: 2427
+        y: 1747
+        width: 619
+        height: 639
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 512f9fc30dd60754f935303e3a1ded73
+      internalID: -1979372919
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014set of button for applications_5293517_14"
+      rect:
+        serializedVersion: 2
+        x: 3161
+        y: 1747
+        width: 621
+        height: 639
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d1c85dc65445c6a45851907a863af823
+      internalID: 302677149
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014set of button for applications_5293517_15"
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 1005
+        width: 620
+        height: 639
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5f7eacab7c7f7f44eb3a9452269e710b
+      internalID: 1003671138
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014set of button for applications_5293517_16"
+      rect:
+        serializedVersion: 2
+        x: 936
+        y: 1005
+        width: 620
+        height: 639
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a7b52f069947ae24fbce0341e03feb6a
+      internalID: 69618526
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014set of button for applications_5293517_17"
+      rect:
+        serializedVersion: 2
+        x: 1683
+        y: 1005
+        width: 619
+        height: 639
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2b2da144804ad314cb771ec9658ea2ed
+      internalID: -1982377160
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014set of button for applications_5293517_18"
+      rect:
+        serializedVersion: 2
+        x: 2427
+        y: 1005
+        width: 619
+        height: 639
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: de179e5c70e7f454a928a216ba3c269f
+      internalID: 446954775
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014set of button for applications_5293517_19"
+      rect:
+        serializedVersion: 2
+        x: 3161
+        y: 1005
+        width: 621
+        height: 639
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d28e48e837c542b48becc6ebafe49783
+      internalID: 1457315512
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014set of button for applications_5293517_20"
+      rect:
+        serializedVersion: 2
+        x: 190
+        y: 263
+        width: 620
+        height: 638
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f714f551bf61c0541b44f781a0f251ae
+      internalID: 674019471
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014set of button for applications_5293517_21"
+      rect:
+        serializedVersion: 2
+        x: 936
+        y: 263
+        width: 620
+        height: 638
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a05120361b7db84ab566fceb520704f
+      internalID: 19767905
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014set of button for applications_5293517_22"
+      rect:
+        serializedVersion: 2
+        x: 1683
+        y: 263
+        width: 619
+        height: 638
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a52026df262bfe5478c8737957b07e3b
+      internalID: 1515854270
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014set of button for applications_5293517_23"
+      rect:
+        serializedVersion: 2
+        x: 2427
+        y: 263
+        width: 619
+        height: 638
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0207eed1948388d45b9ebf33c1adfac7
+      internalID: -2004554628
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: "\u2014Pngtree\u2014set of button for applications_5293517_24"
+      rect:
+        serializedVersion: 2
+        x: 3161
+        y: 263
+        width: 621
+        height: 638
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 39f4431307597ec46981358681982141
+      internalID: -545348367
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+    nameFileIdTable:
+      "\u2014Pngtree\u2014set of button for applications_5293517_24": -545348367
+      "\u2014Pngtree\u2014set of button for applications_5293517_14": 302677149
+      "\u2014Pngtree\u2014set of button for applications_5293517_20": 674019471
+      "\u2014Pngtree\u2014set of button for applications_5293517_3": -121726967
+      "\u2014Pngtree\u2014set of button for applications_5293517_6": 1516876483
+      "\u2014Pngtree\u2014set of button for applications_5293517_8": -1582097014
+      "\u2014Pngtree\u2014set of button for applications_5293517_19": 1457315512
+      "\u2014Pngtree\u2014set of button for applications_5293517_21": 19767905
+      "\u2014Pngtree\u2014set of button for applications_5293517_18": 446954775
+      "\u2014Pngtree\u2014set of button for applications_5293517_12": -809971075
+      "\u2014Pngtree\u2014set of button for applications_5293517_0": -2089583123
+      "\u2014Pngtree\u2014set of button for applications_5293517_16": 69618526
+      "\u2014Pngtree\u2014set of button for applications_5293517_7": 1445983632
+      "\u2014Pngtree\u2014set of button for applications_5293517_11": -209359661
+      "\u2014Pngtree\u2014set of button for applications_5293517_2": -221191562
+      "\u2014Pngtree\u2014set of button for applications_5293517_1": 955329230
+      "\u2014Pngtree\u2014set of button for applications_5293517_13": -1979372919
+      "\u2014Pngtree\u2014set of button for applications_5293517_17": -1982377160
+      "\u2014Pngtree\u2014set of button for applications_5293517_5": 2084237246
+      "\u2014Pngtree\u2014set of button for applications_5293517_4": 1227200402
+      "\u2014Pngtree\u2014set of button for applications_5293517_9": 1767175962
+      "\u2014Pngtree\u2014set of button for applications_5293517_10": 941927928
+      "\u2014Pngtree\u2014set of button for applications_5293517_15": 1003671138
+      "\u2014Pngtree\u2014set of button for applications_5293517_22": 1515854270
+      "\u2014Pngtree\u2014set of button for applications_5293517_23": -2004554628
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

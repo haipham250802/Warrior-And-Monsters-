@@ -164,9 +164,7 @@ public class EnemyBehavior : MonoBehaviour
             {
                 isAttack = true;
                 Instantiate(Bullet, PosBullet.transform.position, Quaternion.identity);
-                CurTimeAttack = TimeAttack;
-                Debug.LogWarning("da ban dan");
-            }
+                CurTimeAttack = TimeAttack;            }
         }
     }
     void Flip()

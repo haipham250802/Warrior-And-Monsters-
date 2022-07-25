@@ -29,7 +29,6 @@ public static class DataPlayer
                 diamond = 300,
 
                 Level = 1,
-                IdMap = 2,
 
                 damage1 = 11,
                 damage2 = 41,
@@ -191,9 +190,9 @@ public static class DataPlayer
         allData.SetDamage1(value);
         SaveData();
     }
-    public static void AddDamage1(int Level)
+    public static void AddDamage1(int CurDamage, int Level)
     {
-        allData.AddDamage1(Level);
+        allData.AddDamage1(CurDamage, Level);
         SaveData();
     }
 
@@ -206,9 +205,9 @@ public static class DataPlayer
         allData.SetDamage2(value);
         SaveData();
     }
-    public static void AddDamage2(int Level)
+    public static void AddDamage2(int CurDamage, int Level)
     {
-        allData.AddDamage2(Level);
+        allData.AddDamage2(CurDamage, Level);
         SaveData();
     }
 
@@ -262,7 +261,11 @@ public static class DataPlayer
     {
         return allData.GetVolume();
     }
-
+    public static void ResetData()
+    {
+        allData.ResetData();
+        SaveData();
+    }
 
 }
 public class AllData
@@ -290,7 +293,6 @@ public class AllData
     public int diamond;
 
     public int Level;
-    public int IdMap;
 
     public float volumeSound;
 
@@ -310,6 +312,33 @@ public class AllData
     public float GetVolume()
     {
         return volumeSound;
+    }
+
+    public void ResetData()
+    {
+        IsPlusDamage1 = false;
+        IsPlusDamage2 = false;
+
+        HP = 200;
+        MaxHP = 200;
+
+        MP = 200;
+        MaxMP = 200;
+
+        XP = 0;
+        MaxXP = 1000;
+
+        coin = 300;
+        diamond = 300;
+
+        Level = 1;
+
+        damage1 = 11;
+        damage2 = 41;
+
+        volumeSound = 1f;
+        WeponList = new List<int> { };
+        LevelList = new List<int> { 1 };
     }
     #region Wepon
     public bool IsOwnWeponWithId(int id)
@@ -350,9 +379,9 @@ public class AllData
     {
         damage1 = value;
     }
-    public void AddDamage1(int level)
+    public void AddDamage1(int curDamage, int level)
     {
-        damage1 += (level * level * level);
+        damage1 = curDamage + (level * level * level);
     }
 
 
@@ -364,9 +393,9 @@ public class AllData
     {
         damage2 = value;
     }
-    public void AddDamage2(int level)
+    public void AddDamage2(int CurDamage, int level)
     {
-        damage2 += (level * level * level);
+        damage2 = CurDamage + (level * level * level);
     }
 
     public void ReceiveBuffDamage1ToSkill(int value)

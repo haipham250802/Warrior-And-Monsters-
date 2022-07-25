@@ -30,6 +30,7 @@ public class LoaderSceneManager : MonoBehaviour
     }
     public void ResetGame()
     {
-        PlayerPrefs.DeleteAll();
+        DataPlayer.ResetData();
+        Application.Quit();
     }
 }

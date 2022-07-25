@@ -26,8 +26,6 @@ public class UImanagerLobby : MonoBehaviour
     {
         m_wp1 = FindObjectOfType<WeponId1>();
         m_wp2 = FindObjectOfType<WeponId2>();
-
-
     }
     private void Update()
     {

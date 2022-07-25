@@ -165,8 +165,6 @@ public class BossBehavior : MonoBehaviour
                 {
                     anim.SetBool(nameAttack, false);
                     CurTimeAttack -= Time.deltaTime;
-                    Debug.LogWarning("da cham");
-                    Debug.LogWarning("da ban");
                 }
                 else if (CurTimeAttack <= 0)
                 {
