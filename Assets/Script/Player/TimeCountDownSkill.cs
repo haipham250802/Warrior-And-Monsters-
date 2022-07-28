@@ -152,7 +152,7 @@ public class TimeCountDownSkill : MonoBehaviour
                 {
                     DataPlayer.SetHP(hp);
                 }
-                else if (hp > MaxHp)
+                else if (hp >= MaxHp)
                 {
                     hp = MaxHp;
                     DataPlayer.SetHP(hp);

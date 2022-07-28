@@ -33,6 +33,7 @@ public class Player : MonoBehaviour
     [Header("Object")]
     public GameObject SKills;
     public GameObject DeadGameUI;
+    public GameObject NextMap;
 
     private int ClickCount00 = 0;
     private int ClickCount01 = 0;
@@ -58,6 +59,8 @@ public class Player : MonoBehaviour
 
     private bool isMovementRight;
     private bool isMovementLeft;
+
+    
 
     public bool IsGameOver { get => isGameOver; private set => isGameOver = value; }
     public int ClickCount001 { get => ClickCount00; set => ClickCount00 = value; }
@@ -98,6 +101,8 @@ public class Player : MonoBehaviour
         int maxmp = DataPlayer.GetMaxMP();
         DataPlayer.SetHP(maxhp);
         DataPlayer.SetMP(maxmp);
+
+        NextMap.SetActive(false);
     }
 
     void Update()
@@ -305,6 +310,8 @@ public class Player : MonoBehaviour
             DataPlayer.SetMP(Mp);
 
             DataPlayer.SetXP(0);
+
+            NextMap.SetActive(true);
         }
     }
     public void Sword_Attack()

@@ -16,14 +16,17 @@ public class UImanager : MonoBehaviour
     public Slider sliderMP;
 
     public GameObject DeadGamePanel;
+
+
     void Start()
     {
         DeadGamePanel.SetActive(false);
-       
+
     }
     private void Update()
     {
         UpdateView();
+
     }
     public void UpdateView()
     {
@@ -43,10 +46,12 @@ public class UImanager : MonoBehaviour
         sliderMP.maxValue = DataPlayer.GetMaxMP();
         sliderMP.value = DataPlayer.GetMP();
 
+
     }
  
     public void ShowDeadGame()
     {
         DeadGamePanel.SetActive(true);
     }
+
 }

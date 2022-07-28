@@ -450,7 +450,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -2.2000122, y: 0}
+  m_AnchoredPosition: {x: -2.1999512, y: 0}
   m_SizeDelta: {x: -524.32, y: -105.74}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &182201971
@@ -864,7 +864,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0.000022888184, y: 0.98}
+  m_AnchoredPosition: {x: 0.000022888184, y: 0.97999954}
   m_SizeDelta: {x: -32, y: 48.89}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &253683048
@@ -1673,7 +1673,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 567247792}
         m_TargetAssemblyTypeName: LoaderSceneManager, Assembly-CSharp
-        m_MethodName: LoadMap1
+        m_MethodName: LoadMap2
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2283,7 +2283,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 567247792}
         m_TargetAssemblyTypeName: LoaderSceneManager, Assembly-CSharp
-        m_MethodName: LoadMap1
+        m_MethodName: LoadMap3
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

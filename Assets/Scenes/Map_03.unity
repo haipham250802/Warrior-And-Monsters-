@@ -537,6 +537,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.56434953, y: 0.56434906}
   m_EdgeRadius: 0
+--- !u!114 &279828612 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8493612671633450349, guid: a192866b35390f74c9b723df7abe96bc, type: 3}
+  m_PrefabInstance: {fileID: 657325354}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6aefdbc62969c7742bbcb9ad0863e68d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &294699057
 GameObject:
   m_ObjectHideFlags: 0
@@ -607,12 +618,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iD: 3
   hitPoint: 0
-  maxHitPoint: 250
+  maxHitPoint: 350
   range: 4.68
   speed: 1
   nameRunning: IsRunEnemy3
   nameAttack: IsAttackEnemy3
-  TimeAttack: 1
+  TimeAttack: 0.2
   CurTimeAttack: 0
   PosOriginal: {x: -42.22, y: 30.23, z: 0}
   offset: {x: 1.5, y: 1.5, z: 0}
@@ -2407,6 +2418,63 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1001 &657325354
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 8493612671633450346, guid: a192866b35390f74c9b723df7abe96bc, type: 3}
+      propertyPath: m_Name
+      value: LoaderScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 8493612671633450348, guid: a192866b35390f74c9b723df7abe96bc, type: 3}
+      propertyPath: m_RootOrder
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 8493612671633450348, guid: a192866b35390f74c9b723df7abe96bc, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.3999076
+      objectReference: {fileID: 0}
+    - target: {fileID: 8493612671633450348, guid: a192866b35390f74c9b723df7abe96bc, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: -0.7336137
+      objectReference: {fileID: 0}
+    - target: {fileID: 8493612671633450348, guid: a192866b35390f74c9b723df7abe96bc, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 33.844612
+      objectReference: {fileID: 0}
+    - target: {fileID: 8493612671633450348, guid: a192866b35390f74c9b723df7abe96bc, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8493612671633450348, guid: a192866b35390f74c9b723df7abe96bc, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8493612671633450348, guid: a192866b35390f74c9b723df7abe96bc, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8493612671633450348, guid: a192866b35390f74c9b723df7abe96bc, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8493612671633450348, guid: a192866b35390f74c9b723df7abe96bc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8493612671633450348, guid: a192866b35390f74c9b723df7abe96bc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8493612671633450348, guid: a192866b35390f74c9b723df7abe96bc, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: a192866b35390f74c9b723df7abe96bc, type: 3}
 --- !u!1 &680403725
 GameObject:
   m_ObjectHideFlags: 0
@@ -3269,12 +3337,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iD: 3
   hitPoint: 0
-  maxHitPoint: 250
+  maxHitPoint: 350
   range: 4.68
   speed: 1
   nameRunning: IsRunEnemy3
   nameAttack: IsAttackEnemy3
-  TimeAttack: 1
+  TimeAttack: 0.2
   CurTimeAttack: 0
   PosOriginal: {x: 7.09, y: 23.93, z: 0}
   offset: {x: 1.5, y: 1.5, z: 0}
@@ -6123,6 +6191,64 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1346074968
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1346074970}
+  - component: {fileID: 1346074969}
+  m_Layer: 0
+  m_Name: Water
+  m_TagString: Water
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!61 &1346074969
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346074968}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 100, y: 1}
+  m_EdgeRadius: 0
+--- !u!4 &1346074970
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1346074968}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -10.3, y: -0.9, z: 33.542812}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1351625356
 GameObject:
   m_ObjectHideFlags: 0
@@ -6745,12 +6871,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iD: 3
   hitPoint: 0
-  maxHitPoint: 250
+  maxHitPoint: 350
   range: 4.68
   speed: 1
   nameRunning: IsRunEnemy3
   nameAttack: IsAttackEnemy3
-  TimeAttack: 1
+  TimeAttack: 0.2
   CurTimeAttack: 0
   PosOriginal: {x: -10.26, y: 29.65, z: 0}
   offset: {x: 1.5, y: 1.5, z: 0}
@@ -7254,12 +7380,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   iD: 3
   hitPoint: 0
-  maxHitPoint: 250
+  maxHitPoint: 350
   range: 4.68
   speed: 1
   nameRunning: IsRunEnemy3
   nameAttack: IsAttackEnemy3
-  TimeAttack: 1
+  TimeAttack: 0.2
   CurTimeAttack: 0
   PosOriginal: {x: -25.82, y: 23.85, z: 0}
   offset: {x: 1.5, y: 1.5, z: 0}
@@ -7521,7 +7647,7 @@ PrefabInstance:
     - target: {fileID: 5208660015584574568, guid: 447f97cc552ec1e49bd7fdd99abf1972, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 279828612}
     - target: {fileID: 5208660015584574568, guid: 447f97cc552ec1e49bd7fdd99abf1972, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: LoadLobbyScene
@@ -7600,6 +7726,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5208660016149706708, guid: 447f97cc552ec1e49bd7fdd99abf1972, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5208660016258664503, guid: 447f97cc552ec1e49bd7fdd99abf1972, type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5208660016400622228, guid: 447f97cc552ec1e49bd7fdd99abf1972, type: 3}
@@ -7772,6 +7902,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 447f97cc552ec1e49bd7fdd99abf1972, type: 3}
+--- !u!1 &1784034842 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 272850327, guid: 447f97cc552ec1e49bd7fdd99abf1972, type: 3}
+  m_PrefabInstance: {fileID: 1784034841}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1798706139
 GameObject:
   m_ObjectHideFlags: 0
@@ -8115,6 +8250,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1605298303}
     - target: {fileID: 9132439040700513769, guid: b66f85ad12e1ef641bd3aa40bafabca6, type: 3}
+      propertyPath: NextMap
+      value: 
+      objectReference: {fileID: 1784034842}
+    - target: {fileID: 9132439040700513769, guid: b66f85ad12e1ef641bd3aa40bafabca6, type: 3}
       propertyPath: JumpForce
       value: 700
       objectReference: {fileID: 0}
@@ -8334,12 +8473,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   BossID: 3
   hitPoint: 0
-  maxHitPoint: 1000
+  maxHitPoint: 1500
   range: 18.14
   speed: 0
   nameRunning: IsRunBoss2
   nameAttack: IsAttackBoss2
-  TimeAttack: 5
+  TimeAttack: 2
   CurTimeAttack: 0
   PosOriginal: {x: -8.6, y: 17.97, z: 0}
   offset: {x: 2, y: 2, z: 0}

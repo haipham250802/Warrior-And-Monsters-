@@ -26,6 +26,7 @@ public class BossBehavior : MonoBehaviour
     private Animator anim;
     private bool IsFacingRight;
     private bool isAttack;
+    private bool isDead;
     private Player m_player;
 
     private int minXP = 0;
@@ -39,6 +40,7 @@ public class BossBehavior : MonoBehaviour
     public bool IsAttack { get => isAttack; set => isAttack = value; }
     public int MinXP { get => minXP; set => minXP = value; }
     public int MaxXP { get => maxXP; set => maxXP = value; }
+    public bool IsDead { get => isDead; set => isDead = value; }
 
     // Start is called before the first frame update
     void Start()
@@ -53,6 +55,7 @@ public class BossBehavior : MonoBehaviour
         maxXP = BossID * 120;
 
         CurTimeAttack = TimeAttack;
+        isDead = false;
 
     }
     private void Update()
@@ -83,6 +86,7 @@ public class BossBehavior : MonoBehaviour
                 Instantiate(ItemsDiamond, transform.position, Quaternion.identity);
                 Instantiate(ItemsExp, transform.position, Quaternion.identity);
             }
+            isDead = true;
             Destroy(gameObject);
         }
         health.SetHealth(hitPoint, maxHitPoint);
@@ -143,7 +147,7 @@ public class BossBehavior : MonoBehaviour
                     anim.SetBool(nameAttack, true);
                     CurTimeAttack = 0;
                 }
-                else if (CurTimeAttack <= 0)
+                else if (CurTimeAttack <= TimeAttack)
                 {
                     CurTimeAttack += Time.deltaTime;
                     anim.SetBool(nameAttack,false);
