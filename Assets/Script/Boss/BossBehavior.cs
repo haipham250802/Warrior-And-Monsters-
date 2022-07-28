@@ -52,17 +52,24 @@ public class BossBehavior : MonoBehaviour
         minXP = BossID * 100;
         maxXP = BossID * 120;
 
+        CurTimeAttack = TimeAttack;
+
     }
     private void Update()
     {
         FollowPlayer();
-        if(BossID ==1)
+
+        switch(BossID)
         {
-            AttackId1();
-        }
-        if(BossID == 2)
-        {
-            AttackId2();
+            case 1:
+                AttackId1();
+                break;
+            case 2:
+                AttackId2();
+                break;
+            case 3:
+                AttackId3();
+                break;
         }
     }
     public void TakeHit(float damage)
@@ -130,16 +137,16 @@ public class BossBehavior : MonoBehaviour
             Collider2D col2 = Physics2D.OverlapCircle(transform.position, range / 3, playerMask);
             if (col2)
             {
-                if (CurTimeAttack > 0)
-                {
-                    CurTimeAttack -= Time.deltaTime;
-                    anim.SetBool(nameAttack, false);
-                }
-                else if (CurTimeAttack <= 0)
+                if (CurTimeAttack >= TimeAttack)
                 {
                     isAttack = true;
                     anim.SetBool(nameAttack, true);
-                    CurTimeAttack = TimeAttack;
+                    CurTimeAttack = 0;
+                }
+                else if (CurTimeAttack <= 0)
+                {
+                    CurTimeAttack += Time.deltaTime;
+                    anim.SetBool(nameAttack,false);
                 }
             }
 
@@ -161,17 +168,45 @@ public class BossBehavior : MonoBehaviour
             Collider2D col = Physics2D.OverlapCircle(transform.position, range, playerMask);
             if (col)
             {
-                if (CurTimeAttack > 0)
+                if (CurTimeAttack >= TimeAttack)
+                {
+                    isAttack = true;
+                    anim.SetBool(nameAttack, true);
+                    Instantiate(Meteorite, new Vector3(m_player.transform.position.x, 26, 0), Quaternion.identity);
+                    CurTimeAttack = 0;
+                }
+                else if (CurTimeAttack < TimeAttack)
                 {
                     anim.SetBool(nameAttack, false);
-                    CurTimeAttack -= Time.deltaTime;
+                    CurTimeAttack += Time.deltaTime;
                 }
-                else if (CurTimeAttack <= 0)
+            }
+        }
+        else
+        {
+            anim.SetBool(nameAttack, false);
+            anim.SetBool(nameRunning, false);
+            isAttack = false;
+        }
+    }
+    void AttackId3()
+    {
+        if (!FindObjectOfType<Player>().IsGameOver)
+        {
+            Collider2D col = Physics2D.OverlapCircle(transform.position, range, playerMask);
+            if (col)
+            {
+                if (CurTimeAttack >= TimeAttack)
                 {
-                    anim.SetBool(nameAttack, true);
                     isAttack = true;
-                    Instantiate(Meteorite, new Vector3(m_player.transform.position.x, 26, 0), Quaternion.identity);
-                    CurTimeAttack = TimeAttack;
+                    anim.SetBool(nameAttack, true);
+                    Instantiate(Meteorite, new Vector3(m_player.transform.position.x, 16, 0), Quaternion.identity);
+                    CurTimeAttack = 0;
+                }
+                else if (CurTimeAttack < TimeAttack)
+                {
+                    CurTimeAttack += Time.deltaTime;
+                    anim.SetBool(nameAttack, false);
                 }
             }
         }

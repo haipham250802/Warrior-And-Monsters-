@@ -30,9 +30,6 @@ public class UImanagerLobby : MonoBehaviour
     private void Update()
     {
         UpdateView();
-
-        Debug.Log($"damage1 = { DataPlayer.GetDamage1()} , Damage2 = {DataPlayer.GetDamage2()}");
-
     }
     public void UpdateView()
     {

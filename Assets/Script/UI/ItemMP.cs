@@ -5,13 +5,17 @@ using UnityEngine;
 public class ItemMP : MonoBehaviour
 {
     EnemyBehavior m_enemy;
+    public LayerMask PlayerMask;
+    public float range;
+
     private void Start()
     {
         m_enemy = FindObjectOfType<EnemyBehavior>();
     }
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void Update()
     {
-        if (collision.gameObject.CompareTag("Player"))
+        Collider2D col = Physics2D.OverlapCircle(transform.position, range, PlayerMask);
+        if(col)
         {
             int MaxMp = DataPlayer.GetMaxMP();
             int Mp = DataPlayer.GetMP();
@@ -27,6 +31,10 @@ public class ItemMP : MonoBehaviour
             }
             Destroy(gameObject);
         }
-
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, range);
     }
 }

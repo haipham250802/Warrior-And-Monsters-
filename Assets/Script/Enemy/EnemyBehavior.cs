@@ -56,7 +56,7 @@ public class EnemyBehavior : MonoBehaviour
     private void Update()
     {
         FollowPlayer();
-        if (ID == 1)
+        if (ID == 1 || ID == 3)
         {
             AttackId1();
         }
@@ -72,6 +72,7 @@ public class EnemyBehavior : MonoBehaviour
         {
             int rand = Random.Range(0,ItemsHealth.Length);
             Instantiate(ItemsHealth[rand],transform.position + offset, Quaternion.identity);
+            Instantiate(ItemsHealth[rand], transform.position + offset, Quaternion.identity);
             Destroy(gameObject);
         }
         health.SetHealth(hitPoint, maxHitPoint);
@@ -126,21 +127,22 @@ public class EnemyBehavior : MonoBehaviour
             Collider2D col2 = Physics2D.OverlapCircle(transform.position, range / 3, playerMask);
             if (col2)
             {
-                if (CurTimeAttack > 0)
-                {
-                    CurTimeAttack -= Time.deltaTime;
-                    anim.SetBool(nameAttack, false);
-                }
-                else if (CurTimeAttack <= 0)
+                if (CurTimeAttack >= TimeAttack)
                 {
                     isAttack = true;
                     anim.SetBool(nameAttack, true);
-                    CurTimeAttack = TimeAttack;
+                    CurTimeAttack = 0;
+                }
+                else if (CurTimeAttack < TimeAttack)
+                {
+                    CurTimeAttack += Time.deltaTime;
+                    anim.SetBool(nameAttack, false);
                 }
             }
             else if (col2 == null)
             {
                 anim.SetBool(nameAttack, false);
+                CurTimeAttack = TimeAttack;
             }
         }
         else
@@ -152,20 +154,33 @@ public class EnemyBehavior : MonoBehaviour
     }
     void AttackId2()
     {
-        Collider2D col = Physics2D.OverlapCircle(transform.position, range, playerMask);
-        if(col)
+        if (!m_player.IsGameOver)
         {
-            if (CurTimeAttack > 0)
+            Collider2D col = Physics2D.OverlapCircle(transform.position, range, playerMask);
+            if (col)
             {
-                CurTimeAttack -= Time.deltaTime;
+                if (CurTimeAttack < TimeAttack)
+                {
+                    CurTimeAttack += Time.deltaTime;
 
+                }
+                else if (CurTimeAttack >= TimeAttack)
+                {
+                    isAttack = true;
+                    Instantiate(Bullet, PosBullet.transform.position, Quaternion.identity);
+                    CurTimeAttack = 0;
+                }
             }
-            else if (CurTimeAttack <= 0)
+            else
             {
-                isAttack = true;
-                Instantiate(Bullet, PosBullet.transform.position, Quaternion.identity);
-                CurTimeAttack = TimeAttack;            }
+                isAttack = false;
+                anim.SetBool(nameAttack, false);
+                anim.SetBool(nameRunning, false);
+
+                CurTimeAttack = TimeAttack;
+            }
         }
+     
     }
     void Flip()
     {

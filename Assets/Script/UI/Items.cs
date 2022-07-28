@@ -5,18 +5,21 @@ using UnityEngine;
 public class Items : MonoBehaviour
 {
     EnemyBehavior m_enemy;
+    public LayerMask PlayerMask;
+
+    public float range;
     private void Start()
     {
         m_enemy = FindObjectOfType<EnemyBehavior>();
     }
-
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void Update()
     {
-        if (collision.gameObject.CompareTag("Player"))
+        Collider2D col = Physics2D.OverlapCircle(transform.position, range, PlayerMask);
+        if(col)
         {
             int MaxHp = DataPlayer.GetMaxHP();
             int hp = DataPlayer.GetHP();
-            hp = hp + (m_enemy.ID * 10 );
+            hp = hp + (m_enemy.ID * 10);
             if (hp < MaxHp)
             {
                 DataPlayer.SetHP(hp);
@@ -28,6 +31,10 @@ public class Items : MonoBehaviour
             }
             Destroy(gameObject);
         }
-        
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireSphere(transform.position, range);
     }
 }
